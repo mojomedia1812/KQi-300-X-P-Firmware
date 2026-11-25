@@ -1,0 +1,14 @@
+{
+  "tool": "built-in imagegen",
+  "purpose": "Privacy redaction of two real device screenshots; all tap markers are separate SVG geometry.",
+  "profile": {
+    "output": "screens/02-profile-anonymized.png",
+    "instruction": "Cover only the account-name text centered under the round avatar with a solid opaque black rectangle. Preserve the settings gear, NIU 5.12.2 version line, existing vehicle card, layout and other text. Do not add arrows or numbers.",
+    "review": "All account-name characters removed; settings gear and existing vehicle card compared visually against the private device capture. Output resolution and rendering changed, disclosed in documentation."
+  },
+  "vehicle_management": {
+    "output": "screens/10-manage-anonymized.png",
+    "instruction": "Cover only the values in the S/N and VIN rows with solid opaque black rectangles. Preserve row labels, Firmwareaktualisierung row, chevron and other UI. Do not add arrows or numbers.",
+    "review": "S/N and VIN values fully obscured; Firmwareaktualisierung label and tap area compared visually against the private device capture. Output resolution and rendering changed, disclosed in documentation."
+  }
+}

@@ -1,0 +1,510 @@
+{
+  "capture_date": "2026-11-25",
+  "app_release": "niu-patch-v5.12.2-r1",
+  "apk_sha256": "fee47a901ec2dbbee9817afbc964266bf218412caf0a2658c99c51bb1e114a2d",
+  "package": "com.niu.lxckb9p",
+  "device_model": "Samsung SM-N981B",
+  "android_version": "13",
+  "capture_size": [
+    1080,
+    2400
+  ],
+  "reference_frame": [
+    1080,
+    2400
+  ],
+  "annotated_size": [
+    1260,
+    2400
+  ],
+  "account_signed_in": true,
+  "scooter_connected": false,
+  "firmware_transfer_started": false,
+  "manual_source_activated_for_capture": "US / KBE13D03",
+  "internal_test_performed": true,
+  "manual_source_disabled_after_capture": true,
+  "private_identifiers_published": false,
+  "screenshots": {
+    "01-home.png": {
+      "sha256": "e197efd06d39b9ba3b553995199a66d9f8c23068d2f0c4f0e20a5328c9d2e488",
+      "dimensions": [
+        1080,
+        2400
+      ],
+      "privacy_edit": null,
+      "pixel_identical_to_device_capture": true
+    },
+    "02-profile-anonymized.png": {
+      "sha256": "0f8f9d90498f005519f1979df58fe918367c7e8ae607480568b47df2f8756d50",
+      "dimensions": [
+        842,
+        1869
+      ],
+      "privacy_edit": "imagegen_redaction",
+      "pixel_identical_to_device_capture": false
+    },
+    "03-settings.png": {
+      "sha256": "3ebda216c9403579d909b3c0aefcb67fff79a452f9b0ed8b3d7c3c3ffc213ff7",
+      "dimensions": [
+        1080,
+        2400
+      ],
+      "privacy_edit": null,
+      "pixel_identical_to_device_capture": true
+    },
+    "04-region.png": {
+      "sha256": "ede2994cb3a032e2007fc745517475c12fe60f85e7c677060c4adf745f849dba",
+      "dimensions": [
+        1080,
+        2400
+      ],
+      "privacy_edit": null,
+      "pixel_identical_to_device_capture": true
+    },
+    "05-validate.png": {
+      "sha256": "7c0fc774d641d54b6827998df0eb09f556619726d9170f96539e6ca600b0e4fa",
+      "dimensions": [
+        1080,
+        2400
+      ],
+      "privacy_edit": null,
+      "pixel_identical_to_device_capture": true
+    },
+    "06-active.png": {
+      "sha256": "3cb70bea1cf7a30ccaae5121cb7914955c1f99c5afaafb540e113b218596ee82",
+      "dimensions": [
+        1080,
+        2400
+      ],
+      "privacy_edit": null,
+      "pixel_identical_to_device_capture": true
+    },
+    "07-test-result.png": {
+      "sha256": "54d8673a7f55848e0d40dc85644d6c87b0f3b52e8d1980efe1fa9113691eec11",
+      "dimensions": [
+        1080,
+        2400
+      ],
+      "privacy_edit": null,
+      "pixel_identical_to_device_capture": true
+    },
+    "08-return.png": {
+      "sha256": "a23eb16ff436b0310f567975c8742c129ae21d98ba96635e87909abf2106197e",
+      "dimensions": [
+        1080,
+        2400
+      ],
+      "privacy_edit": null,
+      "pixel_identical_to_device_capture": true
+    },
+    "10-manage-anonymized.png": {
+      "sha256": "91640ff59c1759d73420c095596fcbf3d17ded2b21de09575e80fc5c819d9aa7",
+      "dimensions": [
+        819,
+        1920
+      ],
+      "privacy_edit": "imagegen_redaction",
+      "pixel_identical_to_device_capture": false
+    },
+    "11-deactivate.png": {
+      "sha256": "696f66b147029666718b0234f3f765d0b313c40a2416e4870ad878804ee60361",
+      "dimensions": [
+        1080,
+        2400
+      ],
+      "privacy_edit": null,
+      "pixel_identical_to_device_capture": true
+    },
+    "12-disabled.png": {
+      "sha256": "f9b45f6d407248c3c43716f258d0762f96cacacbda21f71d5cf450b6b93b3aa8",
+      "dimensions": [
+        1080,
+        2400
+      ],
+      "privacy_edit": null,
+      "pixel_identical_to_device_capture": true
+    }
+  },
+  "figures": [
+    {
+      "name": "01-open-profile",
+      "source": "01-home.png",
+      "title": "1: Im Fahrzeugbildschirm Ich öffnen",
+      "markers": [
+        {
+          "number": 1,
+          "rect": [
+            740,
+            2102,
+            310,
+            165
+          ],
+          "target": [
+            900,
+            2160
+          ],
+          "observed_tap_bounds": [
+            720,
+            2102,
+            1080,
+            2173
+          ]
+        }
+      ]
+    },
+    {
+      "name": "02-open-settings",
+      "source": "02-profile-anonymized.png",
+      "title": "2: Nur das Einstellungssymbol antippen",
+      "markers": [
+        {
+          "number": 2,
+          "rect": [
+            23,
+            84,
+            135,
+            135
+          ],
+          "target": [
+            92,
+            152
+          ],
+          "observed_tap_bounds": [
+            23,
+            84,
+            158,
+            219
+          ]
+        }
+      ]
+    },
+    {
+      "name": "03-open-about",
+      "source": "03-settings.png",
+      "title": "3: Über neben Version 5.12.2 öffnen",
+      "markers": [
+        {
+          "number": 3,
+          "rect": [
+            51,
+            1362,
+            978,
+            127
+          ],
+          "target": [
+            970,
+            1425
+          ],
+          "observed_tap_bounds": [
+            51,
+            1362,
+            1029,
+            1489
+          ]
+        }
+      ]
+    },
+    {
+      "name": "04-choose-region",
+      "source": "04-region.png",
+      "title": "4: Gewünschte Region wählen, hier US als Beispiel",
+      "markers": [
+        {
+          "number": 4,
+          "rect": [
+            701,
+            599,
+            323,
+            135
+          ],
+          "target": [
+            970,
+            667
+          ],
+          "observed_tap_bounds": [
+            701,
+            599,
+            1024,
+            734
+          ]
+        }
+      ]
+    },
+    {
+      "name": "05-validate-source",
+      "source": "05-validate.png",
+      "title": "5: Quelle prüfen und aktivieren",
+      "markers": [
+        {
+          "number": 5,
+          "rect": [
+            56,
+            1049,
+            968,
+            135
+          ],
+          "target": [
+            980,
+            1116
+          ],
+          "observed_tap_bounds": [
+            56,
+            1049,
+            1024,
+            1184
+          ]
+        }
+      ]
+    },
+    {
+      "name": "06-run-test",
+      "source": "06-active.png",
+      "title": "6: Aktive Quelle kontrollieren und optional internen Test starten",
+      "markers": [
+        {
+          "number": 6,
+          "rect": [
+            56,
+            1434,
+            968,
+            135
+          ],
+          "target": [
+            980,
+            1501
+          ],
+          "observed_tap_bounds": [
+            56,
+            1434,
+            1024,
+            1569
+          ]
+        }
+      ],
+      "status": [
+        [
+          40,
+          1184,
+          1000,
+          250
+        ]
+      ]
+    },
+    {
+      "name": "07-test-result",
+      "source": "07-test-result.png",
+      "title": "Test bestanden lesen; kein Fahrzeug-Flash",
+      "status": [
+        [
+          40,
+          1184,
+          1000,
+          299
+        ]
+      ]
+    },
+    {
+      "name": "08-return-to-app",
+      "source": "08-return.png",
+      "title": "7: Zurück zur NIU-App",
+      "markers": [
+        {
+          "number": 7,
+          "rect": [
+            56,
+            1927,
+            968,
+            135
+          ],
+          "target": [
+            980,
+            1995
+          ],
+          "observed_tap_bounds": [
+            56,
+            1927,
+            1024,
+            2062
+          ]
+        }
+      ]
+    },
+    {
+      "name": "09-select-vehicle",
+      "source": "02-profile-anonymized.png",
+      "title": "8: Vorhandenen KQi 300X auswählen",
+      "markers": [
+        {
+          "number": 8,
+          "rect": [
+            51,
+            1190,
+            978,
+            285
+          ],
+          "target": [
+            980,
+            1330
+          ],
+          "observed_tap_bounds": [
+            0,
+            1175,
+            1080,
+            1501
+          ]
+        }
+      ]
+    },
+    {
+      "name": "10-firmware-entry",
+      "source": "10-manage-anonymized.png",
+      "title": "9: Firmwareaktualisierung öffnen; Roller-Verbindung erforderlich",
+      "markers": [
+        {
+          "number": 9,
+          "rect": [
+            51,
+            644,
+            978,
+            127
+          ],
+          "target": [
+            980,
+            708
+          ],
+          "observed_tap_bounds": [
+            51,
+            647,
+            1029,
+            768
+          ]
+        }
+      ]
+    },
+    {
+      "name": "11-disable-source",
+      "source": "11-deactivate.png",
+      "title": "10: Nach dem Vorgang manuelle Quelle deaktivieren",
+      "markers": [
+        {
+          "number": 10,
+          "rect": [
+            56,
+            1569,
+            968,
+            135
+          ],
+          "target": [
+            980,
+            1637
+          ],
+          "observed_tap_bounds": [
+            56,
+            1569,
+            1024,
+            1704
+          ]
+        }
+      ]
+    },
+    {
+      "name": "12-source-disabled",
+      "source": "12-disabled.png",
+      "title": "Manuelle Quelle aus kontrollieren; keine neue Tippaktion",
+      "status": [
+        [
+          40,
+          1184,
+          1000,
+          152
+        ]
+      ]
+    }
+  ],
+  "annotated_exports": {
+    "01-open-profile.png": {
+      "sha256": "a81d450e0322768a07ee6e3587133a3888a8b813c5c7c18309b238ac2086e72a",
+      "dimensions": [
+        1260,
+        2400
+      ]
+    },
+    "02-open-settings.png": {
+      "sha256": "324603aecc1642377895b7e53199bcef7fa43dd0445d58c1cccdb50381de9cdc",
+      "dimensions": [
+        1260,
+        2400
+      ]
+    },
+    "03-open-about.png": {
+      "sha256": "9020d0ec5bed928f23198644059d8d393e497a62d4eac07b808b115d45beac7f",
+      "dimensions": [
+        1260,
+        2400
+      ]
+    },
+    "04-choose-region.png": {
+      "sha256": "145e920d98c1d36d4c5108e8c4ee4615a7ffa566d25031ec1703ea9b65dfbda5",
+      "dimensions": [
+        1260,
+        2400
+      ]
+    },
+    "05-validate-source.png": {
+      "sha256": "315633a92fd157c2365207b02dd785d37d1676e76a3b11d495d61e6dd40f6705",
+      "dimensions": [
+        1260,
+        2400
+      ]
+    },
+    "06-run-test.png": {
+      "sha256": "50737ac5220784d0bf9845d6c1adeaa5c189088bd10ef720c9433cc5bbccbbd0",
+      "dimensions": [
+        1260,
+        2400
+      ]
+    },
+    "07-test-result.png": {
+      "sha256": "b18cd724f1a94027f0214a58642b916c92c6f396c2d530c077bc5654d9456118",
+      "dimensions": [
+        1260,
+        2400
+      ]
+    },
+    "08-return-to-app.png": {
+      "sha256": "65e8d650d7cba06598b92d1efb192a758972b113866b21577e8d3460471da193",
+      "dimensions": [
+        1260,
+        2400
+      ]
+    },
+    "09-select-vehicle.png": {
+      "sha256": "11289e74b952ceb411b5d63a0122491f66772bc0f970ddec582d5b3326d85164",
+      "dimensions": [
+        1260,
+        2400
+      ]
+    },
+    "10-firmware-entry.png": {
+      "sha256": "41d687d5e1218c9f449e0749f485bd3f71942a3634a13df5a1d6fb11c8a69b42",
+      "dimensions": [
+        1260,
+        2400
+      ]
+    },
+    "11-disable-source.png": {
+      "sha256": "2d42a116e7e2d6fbc9f916ad82f5a5c3c67392b78cae99fe9ac3eec0b8118de3",
+      "dimensions": [
+        1260,
+        2400
+      ]
+    },
+    "12-source-disabled.png": {
+      "sha256": "d66251dde108c254a4422995060c92c81dc3bf301b52dfb24bab027e6258ba8a",
+      "dimensions": [
+        1260,
+        2400
+      ]
+    }
+  }
+}

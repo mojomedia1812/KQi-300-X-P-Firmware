@@ -19,6 +19,8 @@ Für 5.12.2 wurde der neue Menü- und Injektionscode geprüft und auf dem Samsun
 
 **Offen:** Kein Bluetooth-Test, kein am verbundenen Roller beobachtetes Update-Angebot und kein Flash mit diesem Release. Der vorgesehene Fahrzeugablauf ist daher in der Anleitung als ungetestet gekennzeichnet. [Öffentlicher Prüfbericht](../apps/niu-patch/verification-5.12.2-r1.json).
 
+**Ergänzung durch aktuelle Aufnahmen:** Die [bebilderte Anleitung für 5.12.2](niu-patch-anleitung.md) enthält jetzt zwölf Abbildungen der veröffentlichten APK. Menüweg, US-Quellenprüfung, interner Parser-Test und anschließendes Deaktivieren wurden erneut am Handy ausgeführt. Auch **Mein Gerät → KQi 300X → Verwalten → Firmwareaktualisierung** wurde mit 5.12.2 geprüft; ohne Roller erschien dort die Bluetooth-Verbindungsaufforderung. Die [aktuelle Bildherkunft](assets/niu-patch-5.12.2/README.md) dokumentiert echte Aufnahmen, die Anonymisierung zweier Quellen, Tippkoordinaten und Prüfsummen. Die nachfolgend als historisch beschriebenen Bilder und Codebelege bleiben auf 4.8.12 bezogen.
+
 ## Veröffentlichte Anleitungen und ihre Grenzen
 
 | Quelle | Was wurde geprüft? | Konsequenz für unsere Anleitung |

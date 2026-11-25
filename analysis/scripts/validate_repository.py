@@ -49,6 +49,31 @@ def main():
         assert hashlib.sha256(data).hexdigest() == identity['sha256'], name
         assert list(struct.unpack('>II', data[16:24])) == identity['dimensions'], name
     print('Public screenshot sources and nine annotated PNG exports verified')
+    current_root = ROOT / 'docs/assets/niu-patch-5.12.2'
+    current = json.loads((current_root / 'manifest.json').read_text(encoding='utf-8'))
+    release = json.loads((ROOT / 'apps/niu-patch/release.json').read_text(encoding='utf-8'))
+    assert current['app_release'] == release['release_tag']
+    assert current['apk_sha256'] == release['sha256']
+    assert current['package'] == release['package']
+    assert current['scooter_connected'] is False
+    assert current['firmware_transfer_started'] is False
+    assert current['manual_source_disabled_after_capture'] is True
+    assert len(current['screenshots']) == 11
+    assert len(current['annotated_exports']) == len(current['figures']) == 12
+    for figure in current['figures']:
+        assert figure['source'] in current['screenshots']
+        assert figure['name'] + '.png' in current['annotated_exports']
+        assert (current_root / (figure['name'] + '.svg')).exists()
+    current_files = {
+        **{f'screens/{name}': entry for name, entry in current['screenshots'].items()},
+        **current['annotated_exports'],
+    }
+    for name, identity in current_files.items():
+        data = (current_root / name).read_bytes()
+        assert data.startswith(b'\x89PNG\r\n\x1a\n'), name
+        assert hashlib.sha256(data).hexdigest() == identity['sha256'], name
+        assert list(struct.unpack('>II', data[16:24])) == identity['dimensions'], name
+    print('NIU Patch 5.12.2: eleven public sources, twelve annotated PNGs and release identity verified')
     for path in sorted(ROOT.rglob('*.md')):
         if any(part in ('.git', '.venv', 'generated') for part in path.relative_to(ROOT).parts):
             continue

@@ -10,6 +10,14 @@ Stand: **25. November 2026**, Release **`niu-patch-v5.12.2-r1`**. Diese Anleitun
 
 Die [bisherige bebilderte Anleitung für 4.8.12](niu-patch-anleitung-4.8.12.md) bleibt als Archiv erhalten. Ihre englischen Knöpfe **Update**, **Copy to clipboard** und **Back to main app** gehören zur alten Version. In 5.12.2 heißen die relevanten Knöpfe **Quelle prüfen und aktivieren**, **Manuelle Quelle deaktivieren** und **Zurück zur NIU-App**. Eine **BT-Secrets-Kopierfunktion ist in 5.12.2 nicht enthalten**.
 
+## So liest du die aktuellen Bilder
+
+Die folgenden **zwölf Abbildungen stammen aus der veröffentlichten NIU Patch 5.12.2 r1** auf einem Samsung SM-N981B mit Android 13. Die installierte APK wurde per SHA-256 mit dem Release abgeglichen. **Orange Rahmen und nummerierte Pfeile markieren genau eine Tippaktion pro Bild. Tippe auf die Pfeilspitze, nicht auf die Zahl am rechten Bildrand. Grüne Rahmen bedeuten: Status lesen, dort nicht tippen.** Die Aktionsnummern 1–10 sind Bildmarkierungen und keine Abschnittsnummern dieser Anleitung.
+
+Profil und Fahrzeugverwaltung wurden zur Anonymisierung mit dem Bildwerkzeug bearbeitet; Kontoname, S/N und VIN sind geschwärzt. Diese zwei Quellen sind nicht pixelidentisch mit den Geräteaufnahmen. Die relevanten Texte und Tippbereiche wurden mit den echten Ansichten abgeglichen. Alle übrigen Quell-PNGs sind unveränderte Geräteaufnahmen. [Bildherkunft, Prüfsummen und Markierungskoordinaten](assets/niu-patch-5.12.2/README.md).
+
+**US ist in den Bildern ein Eingabebeispiel, keine Empfehlung für jede Verwendung.** Für DE oder EU wählst du den entsprechenden benachbarten Regionsknopf. Die Quellenprüfung und der interne Test wurden für diese Aufnahmen tatsächlich ausgeführt; danach wurde die manuelle Quelle wieder deaktiviert. **Kein Firmwareupdate wurde auf den Roller übertragen.** Ohne Roller gibt es hier keine Bilder eines echten Update-Angebots, einer Übertragung oder einer Fahrzeug-Erfolgsmeldung.
+
 ## 1. Was die einzelnen Schritte bewirken
 
 | Aktion | Wirkung | Schreibt sie bereits Firmware auf den Roller? |
@@ -60,6 +68,18 @@ fee47a901ec2dbbee9817afbc964266bf218412caf0a2658c99c51bb1e114a2d
 
 **Die Modellprüfung bleibt bei dir:** Die Injektion erkennt eine passende KBE-Firmwarefamilie in der OTA-Anfrage; das ist kein unabhängiger Nachweis des physischen Rollermodells. Dieses Projekt enthält 300X-Dateien, keine nachgewiesen kompatiblen 300P-Dateien.
 
+<img src="assets/niu-patch-5.12.2/01-open-profile.png" width="504" alt="NIU Patch 5.12.2 Fahrzeugansicht: Pfeil 1 zeigt auf den Profilknopf Ich unten rechts.">
+
+**Bild A — Profil öffnen, Aktion 1.** Unten rechts **Ich** antippen. Das Bild zeigt **Offline**; die gespeicherten Akku- und Reichweitenwerte bestätigen keine Bluetooth-Verbindung.
+
+<img src="assets/niu-patch-5.12.2/02-open-settings.png" width="504" alt="Anonymisiertes Profil von NIU Patch 5.12.2: ausschließlich Pfeil 2 auf das Einstellungssymbol oben links.">
+
+**Bild B — App-Einstellungen öffnen, Aktion 2.** Oben links auf das weiße **Einstellungssymbol** tippen. Dieses Bild markiert ausschließlich die Einstellungen. Der geschwärzte Kontoname und die Fahrzeugkarte gehören nicht zu dieser Aktion.
+
+<img src="assets/niu-patch-5.12.2/03-open-about.png" width="504" alt="Einstellungen von NIU Patch 5.12.2: Pfeil 3 auf Über neben der Versionsangabe 5.12.2.">
+
+**Bild C — Zusatzmenü öffnen, Aktion 3.** Auf die Zeile **Über** neben **5.12.2** tippen. **Cache löschen** darüber und **Abmelden** darunter nicht betätigen.
+
 ## 4. Region auswählen und Quelle prüfen
 
 Für das Prüfen der Quelle ist Internet erforderlich; der Roller muss dafür noch nicht verbunden sein.
@@ -75,10 +95,18 @@ Für das Prüfen der Quelle ist Internet erforderlich; der Roller muss dafür no
 | EU | `KBE01D03` | `KBE01M02.bin` | 25 km/h nominell; kein eigener Fahrtest |
 | US | `KBE13D03` | `KBE13M02.bin` | etwa 38 km/h vom Nutzer berichtet |
 
+<img src="assets/niu-patch-5.12.2/04-choose-region.png" width="504" alt="Zusatzmenü NIU Patch 5.12.2 mit ausgeschalteter Quelle: Pfeil 4 zeigt als Beispiel auf US; daneben stehen DE und EU.">
+
+**Bild D — Region wählen, Aktion 4.** Im gezeigten Beispiel auf **US** tippen. Für DE oder EU stattdessen den entsprechend beschrifteten Knopf wählen. Hier ist die Quelle noch **aus**; der Regionsknopf allein aktiviert sie nicht.
+
 5. Tippe **Quelle prüfen und aktivieren**.
 6. Warte, bis die Prüfung beendet ist. Die App lädt die JSON und die BIN und vergleicht unter anderem FOC, Zielversion, URL, Dateigröße **29.696 Byte** und die hinterlegte MD5-Prüfsumme.
 7. Fahre nur weiter, wenn **Aktiv: DE**, **Aktiv: EU** oder **Aktiv: US** mit der passenden Zielversion erscheint und der Status die geprüfte Quelle und BIN-Prüfsumme bestätigt.
 8. Erscheint **Nicht aktiviert: …**, lies die konkrete Meldung und behebe den Fehler. Nach einer fehlgeschlagenen Prüfung ist die manuelle Quelle nicht aktiv.
+
+<img src="assets/niu-patch-5.12.2/05-validate-source.png" width="504" alt="NIU Patch 5.12.2 nach US-Auswahl: vollständiger JSON-Link im Feld und Pfeil 5 auf Quelle prüfen und aktivieren.">
+
+**Bild E — JSON und BIN prüfen, Aktion 5.** Die Adresse wurde durch die Regionswahl eingetragen. Auf **Quelle prüfen und aktivieren** tippen und die Prüfung abwarten. Im Foto ist vor diesem Tipp die manuelle Quelle weiterhin **aus**. Ein Fokus auf das Link-Feld oder ein weiterer Regionsklick ersetzt diesen Knopf nicht.
 
 **Bis hier wurde keine Firmware auf den Roller übertragen.** Die App akzeptiert nur die vorgesehenen DE-/EU-/US-Quellen aus diesem Repository; eine beliebige fremde JSON lässt sich nicht freischalten. Eine neue Regionswahl oder eine Änderung am Link deaktiviert die vorherige Quelle. Danach musst du erneut **Quelle prüfen und aktivieren** wählen. Beim erneuten Öffnen des Menüs wird der Link einer aktiven Quelle angezeigt; der Status **Aktiv: …** ist die entscheidende Kontrolle.
 
@@ -91,6 +119,14 @@ Die [Firmwareanalyse](speed-limits.md) und der [EU-Vergleich](eu-speed-limits.md
 3. Warte auf **Interner Test bestanden** und die richtige FOC-Zielversion.
 4. Lies die Einschränkung in der Meldung: **Bluetooth-Verbindung und Übertragung zum Roller wurden nicht getestet.**
 
+<img src="assets/niu-patch-5.12.2/06-run-test.png" width="504" alt="Aktive US-Quelle mit KBE13D03 und bestätigter Prüfsumme grün umrahmt; Pfeil 6 auf Interner Test – ohne Roller.">
+
+**Bild F — Aktive Quelle kontrollieren und optional testen, Aktion 6.** Im **grünen Rahmen** muss deine gewählte Region mit der passenden Zielversion stehen; hier **Aktiv: US · KBE13D03** und die bestätigte BIN-Prüfung. Für den optionalen Test auf **Interner Test – ohne Roller** an der orangefarbenen Pfeilspitze tippen. **Manuelle Quelle deaktivieren** direkt darunter ist eine andere Aktion.
+
+<img src="assets/niu-patch-5.12.2/07-test-result.png" width="504" alt="Tatsächliches Ergebnis des internen Tests: Interner Test bestanden, FOC-Zielversion KBE13D03; der Hinweis auf ungetestete Bluetooth-Verbindung und Übertragung ist grün eingerahmt.">
+
+**Bild G — Testergebnis lesen, keine Tippaktion.** Der grüne Rahmen zeigt die tatsächlich am Handy erschienene Meldung **Interner Test bestanden**. Das bestätigt die vorbereitete Antwort im NIU-Parser; die Einschränkung zu Bluetooth und Übertragung gehört zur selben Meldung. Es ist keine Erfolgsmeldung eines Roller-Updates.
+
 Der Test verwendet synthetische Anfragedaten und den echten JSON-Parser der NIU-App. Er sendet keinen Firmware-Flash und keine echte Kontoanfrage. Ein bestandener Test ersetzt die Kontrolle des tatsächlichen Update-Angebots am verbundenen KQi 300X nicht. Wenn du nur testen möchtest, wähle jetzt **Manuelle Quelle deaktivieren** und kontrolliere **Manuelle Quelle: aus.**
 
 ## 6. Das tatsächliche Update-Angebot prüfen
@@ -98,8 +134,8 @@ Der Test verwendet synthetische Anfragedaten und den echten JSON-Parser der NIU-
 **Ab hier ist der passende, eingeschaltete und per Bluetooth verbundene Roller nötig. Dieser Teil wurde mit 5.12.2 nicht am Fahrzeug getestet.**
 
 1. Kontrolliere, dass deine gewünschte Quelle aktiv ist, die originale NIU-App geschlossen ist und NIU Patch eine aktuelle Bluetooth-Verbindung hat.
-2. Tippe **Zurück zur NIU-App**.
-3. Öffne **Profil/Ich → Mein Gerät → vorhandener KQi 300X → Verwalten → Firmwareaktualisierung**. Der Weg zur Fahrzeugverwaltung wurde mit 4.8.12 geprüft; Beschriftungen und Angebot können in 5.12.2 abweichen.
+2. Tippe **Zurück zur NIU-App**. Falls nötig etwas nach unten scrollen. Du landest gegebenenfalls zunächst wieder in den App-Einstellungen; dann mit dem Zurück-Pfeil oben links zum Profil zurückgehen.
+3. Öffne **Profil/Ich → Mein Gerät → vorhandener KQi 300X → Verwalten → Firmwareaktualisierung**. Dieser Menüweg wurde jetzt auch mit 5.12.2 am Handy geprüft. Ohne erreichbaren Roller zeigte die App beim Antippen die Aufforderung, das Gerät per Bluetooth zu verbinden und es erneut zu versuchen; die eigentliche Update-Ansicht wurde damit nicht erreicht.
 4. Warte auf die Firmwareprüfung. War diese Ansicht schon vorher geöffnet, verlasse sie und öffne sie erneut, damit eine neue Abfrage erfolgt.
 5. Prüfe das **neu angebotene** Update: ausschließlich Motorcontroller / **Motor Controller**, intern **FOC**, und die richtige Zielversion aus Abschnitt 4.
 6. Bereits installierte andere Komponenten können in einer Versionsübersicht auftauchen. Sollen zusätzlich **Akku/BMS, Dashboard/DB oder Bluetooth/ECU_BT neu aktualisiert werden**, starte nicht; das entspricht nicht dem FOC-Angebot dieses Projekts.
@@ -107,6 +143,18 @@ Der Test verwendet synthetische Anfragedaten und den echten JSON-Parser der NIU-
 8. Stimmen Modell, Region, Zielversion oder Komponente nicht überein oder lassen sie sich nicht sicher prüfen, halte hier an.
 
 Eine aktivierte Quelle kann bei einer passenden OTA-Abfrage ein Angebot liefern. Ob die konkrete Fahrzeug-/Firmwarekombination dieses Angebot annimmt und erfolgreich schreibt, ist noch offen.
+
+<img src="assets/niu-patch-5.12.2/08-return-to-app.png" width="504" alt="Etwas nach unten gescrolltes NIU-Patch-Menü: Pfeil 7 zeigt genau auf Zurück zur NIU-App, nicht auf Originale App-Info darunter.">
+
+**Bild H — Zur App zurückkehren, Aktion 7.** Auf **Zurück zur NIU-App** tippen. Für dieses Bild wurde etwas nach unten gescrollt; deshalb stehen die Elemente höher als auf den vorigen Bildern. **Originale App-Info** darunter öffnet eine andere Seite. Falls anschließend die Einstellungen erscheinen, mit dem Zurück-Pfeil zum Profil wechseln.
+
+<img src="assets/niu-patch-5.12.2/09-select-vehicle.png" width="504" alt="Anonymisiertes aktuelles Profil: ausschließlich Pfeil 8 auf die Karte des vorhandenen KQi 300X unter Mein Gerät.">
+
+**Bild I — Vorhandenen Roller wählen, Aktion 8.** Unter **Mein Gerät** auf die Karte deines bereits gebundenen **KQi 300X** tippen. **+ Geräteanbindung** ist nicht der gewünschte Knopf. Diese Abbildung markiert ausschließlich die Fahrzeugauswahl; die Einstellungen hatten ihr eigenes Bild B.
+
+<img src="assets/niu-patch-5.12.2/10-firmware-entry.png" width="504" alt="Anonymisierte Fahrzeugverwaltung von NIU Patch 5.12.2: Pfeil 9 zeigt auf Firmwareaktualisierung; S/N und VIN sind geschwärzt.">
+
+**Bild J — Firmwareprüfung öffnen, Aktion 9.** Auf **Firmwareaktualisierung** tippen. **Das ist noch nicht der Knopf zum Starten einer Übertragung.** Ohne Bluetooth-Verbindung erschien bei dieser Aufnahme nur die Verbindungsaufforderung. **S/N und VIN** unter Konfigurationsinfo wurden für die Veröffentlichung geschwärzt. Ein tatsächliches Update-Angebot muss am erreichbaren Roller zusätzlich geprüft werden.
 
 ## 7. Übertragung und Abschluss
 
@@ -120,6 +168,14 @@ Eine aktivierte Quelle kann bei einer passenden OTA-Abfrage ein Angebot liefern.
 8. Kontrolliere **Manuelle Quelle: aus. Die normale Firmwareprüfung ist aktiv.** Damit ist die App-Umleitung aus; die Roller-Firmware wird dadurch nicht zurückgesetzt.
 9. Schließe NIU Patch, bevor du für die normale Verwendung die originale NIU-App verbindest. Ein dort angebotenes Fahrzeug-Firmwareupdate wäre eine weitere Änderung am Roller.
 10. Prüfe nach einem abgeschlossenen Update zunächst Fehleranzeige, Bremsen und Licht im Stand. Bei Warnungen oder Fehlverhalten keine Probefahrt. Einen späteren Geschwindigkeitstest nur in einem geeigneten abgesperrten Bereich durchführen.
+
+<img src="assets/niu-patch-5.12.2/11-disable-source.png" width="504" alt="NIU Patch 5.12.2 mit noch aktiver US-Testquelle: Pfeil 10 auf Manuelle Quelle deaktivieren.">
+
+**Bild K — Quelle nach beendetem Vorgang ausschalten, Aktion 10.** Das Zusatzmenü erneut öffnen und auf **Manuelle Quelle deaktivieren** tippen. Das Bild zeigt die noch aktive Quelle nach dem internen Test. Bei einem echten Fahrzeugupdate erst nach beendetem Vorgang hierher zurückkehren. Den JSON-Link musst du nicht löschen.
+
+<img src="assets/niu-patch-5.12.2/12-source-disabled.png" width="504" alt="NIU-Patch-Menü nach dem Deaktivieren: Manuelle Quelle aus und normale Firmwareprüfung aktiv sind grün eingerahmt; der Link bleibt sichtbar.">
+
+**Bild L — Ausschalten bestätigen, keine Tippaktion.** Im **grünen Rahmen** muss **Manuelle Quelle: aus. Die normale Firmwareprüfung ist aktiv.** stehen. Der JSON-Link kann weiterhin im Feld stehen; entscheidend ist dieser Status. So wurde die App nach den Aufnahmen hinterlassen. Das Deaktivieren ist keine Rückkehr zu einer anderen Roller-Firmware.
 
 ## 8. Fehlerhilfe
 

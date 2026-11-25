@@ -23,7 +23,9 @@ jobs:
       - name: Validate firmware and documentation
         run: python analysis/scripts/validate_repository.py
       - name: Reproduce screenshot tap markers
-        run: python analysis/scripts/build_screenshot_overlays.py
+        run: |
+          python analysis/scripts/build_screenshot_overlays.py
+          python analysis/scripts/build_modern_screenshot_overlays.py
       - name: Compare original files
         run: python analysis/scripts/analyze.py
       - name: Normalize and align firmware payloads
@@ -33,4 +35,4 @@ jobs:
       - name: Reproduce disassembly
         run: python analysis/scripts/export_disassembly.py
       - name: Check generated results
-        run: git diff --exit-code -- analysis/results analysis/evidence docs/assets/niu-patch
+        run: git diff --exit-code -- analysis/results analysis/evidence docs/assets/niu-patch docs/assets/niu-patch-5.12.2

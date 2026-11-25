@@ -13,7 +13,7 @@
 - [SHA256SUMS.txt](https://github.com/mojomedia1812/KQi-300-X-P-Firmware/releases/download/niu-patch-v5.12.2-r1/SHA256SUMS.txt)
 - [Öffentlicher Prüfbericht im Release](https://github.com/mojomedia1812/KQi-300-X-P-Firmware/releases/download/niu-patch-v5.12.2-r1/NIU_Patch_verification.json)
 - [Prüfbericht im Repository](../apps/niu-patch/verification-5.12.2-r1.json) und [maschinenlesbare Release-Daten](../apps/niu-patch/release.json)
-- [Aktuelle Schritt-für-Schritt-Anleitung](niu-patch-anleitung.md)
+- [Aktuelle bebilderte Schritt-für-Schritt-Anleitung](niu-patch-anleitung.md) mit zwölf Abbildungen aus 5.12.2 und genau markierten Tippstellen
 
 Erforderlich sind **Android 8 / API 26 oder neuer** und ein **ARM64-Gerät**. Die APK enthält die benötigten ARM64-Bibliotheken; sie ist kein x86- oder reines 32-Bit-Paket.
 
@@ -70,6 +70,8 @@ Am **25. November 2026** wurde das Release auf dem Samsung **SM-N981B**, Android
 Zusätzlich bestanden ZIP-Integrität, alle sieben DEX-Prüfsummen, APK-Signatur und Ausrichtung, 302 Methoden-/Feldreferenzen und 51 Host-Prüfungen der Injektionslogik. Am Handy wurden Menü, US-JSON/BIN-Prüfsumme und ein interner Test mit dem tatsächlichen NIU-Parser geprüft. Die manuelle Quelle wurde danach deaktiviert. Der vorherige Gerätetest der vorläufigen 5.12.2-Variante umfasste außerdem Anmeldung und den vom Nutzer bestätigten Menüweg über **Über**.
 
 **Nicht geprüft:** Bluetooth-Verbindung, tatsächlich am verbundenen KQi 300X angezeigtes Angebot und Firmwareübertragung mit diesem Release. Der Roller war nicht verfügbar. Der interne Test ist kein erfolgreicher Flash und keine Garantie für jeden Hardware-/Firmwarestand.
+
+Für die aktuelle [Bildfolge](assets/niu-patch-5.12.2/README.md) wurden Quellenprüfung und interner Test erneut ausgeführt und die Quelle anschließend deaktiviert. Der Menüweg zur Fahrzeug-Firmwareprüfung wurde auch in 5.12.2 geöffnet; ohne Roller blockierte die Bluetooth-Abfrage den Wechsel zur eigentlichen Update-Ansicht. Die zwölf Abbildungen der Anleitung zeigen deshalb keinen Fahrzeug-Flash.
 
 Die Release-Assets enthalten APK, Prüfsummen, eine Kurzanleitung und den öffentlichen Prüfbericht. Private Signaturschlüssel, Zugangsdaten, Bluetooth-Schlüssel und private Geräteaufnahmen gehören nicht zur Veröffentlichung.
 
