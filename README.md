@@ -8,11 +8,24 @@ Regionale FOC-Firmwaredateien für den Motorcontroller des **NIU KQi 300X**, die
 > **NIU Patch kann gleichzeitig neben der offiziellen NIU-App installiert werden.**
 > **Die offizielle NIU-App bleibt installiert.** Beide Apps besitzen getrennte Paketkennungen und lokale App-Daten. Offizielle NIU-Updates ersetzen NIU Patch deshalb nicht.
 
-**[NIU Patch APK herunterladen](https://github.com/mojomedia1812/KQi-300-X-P-Firmware/releases/download/niu-patch-v4.8.12-r1/NIU_Patch.apk)** · [Release und Prüfsummen](https://github.com/mojomedia1812/KQi-300-X-P-Firmware/releases/tag/niu-patch-v4.8.12-r1) · [Installation und Details](docs/niu-patch.md)
+**[NIU Patch 5.12.2 APK herunterladen](https://github.com/mojomedia1812/KQi-300-X-P-Firmware/releases/download/niu-patch-v5.12.2-r1/NIU_Patch.apk)** · [Release und Prüfsummen](https://github.com/mojomedia1812/KQi-300-X-P-Firmware/releases/tag/niu-patch-v5.12.2-r1) · [Installation und Details](docs/niu-patch.md)
 
-**[Bebilderte Schritt-für-Schritt-Anleitung für den KQi 300X](docs/niu-patch-anleitung.md)** — mit echten App-Aufnahmen, nummerierten Tippmarkierungen, Kontrollpunkten, DE-/EU-/US-Links, Schlüsselsicherung und Fehlerhilfe. Profil und Fahrzeugverwaltung sind anonymisiert; ohne erreichbaren Roller wurde keine Übertragung aufgenommen. Der [Quellenabgleich](docs/niu-patch-quellen.md) trennt am APK-Code und am Handy geprüfte Abläufe, externe Berichte und ungetestete Fahrzeugfunktionen.
+**[Aktuelle Schritt-für-Schritt-Anleitung für NIU Patch 5.12.2 und KQi 300X](docs/niu-patch-anleitung.md)**. Die [bebilderte Anleitung für 4.8.12](docs/niu-patch-anleitung-4.8.12.md) bleibt als ausdrücklich gekennzeichnetes Archiv erhalten; ihre alten Knöpfe gelten nicht für 5.12.2.
 
-Basis ist die angepasste NIU-Version **4.8.12**. Die App erscheint als **NIU Patch** und verwendet `com.niu.lxckb9p`; die offizielle App verwendet `com.niu.manager`. Wer bereits **NIU Parallel** aus diesem Projekt installiert hat, kann diese APK als Update darüber installieren. Paketkennung und Signaturschlüssel bleiben gleich, sodass die vorhandenen lokalen App-Daten erhalten bleiben.
+Die neue App heißt weiterhin **NIU Patch** und basiert auf **NIU 5.12.2**. Sie verwendet `com.niu.lxckb9p` und denselben Signaturschlüssel wie die bisherige **NIU Patch / NIU Parallel** dieses Projekts. **Die neue APK als Update darüber installieren; die bisherige Patch-App vorher nicht deinstallieren.** So bleiben deren Android-Appdaten erhalten; eine erneute Anmeldung kann bei Bedarf trotzdem erforderlich sein. Die offizielle NIU-App mit `com.niu.manager` bleibt parallel installiert. Erforderlich sind **Android 8 oder neuer und ARM64**.
+
+### Kurzablauf mit der neuen Oberfläche
+
+1. Die verlinkte **NIU_Patch.apk** öffnen und **Aktualisieren / Installieren** wählen. Danach **NIU Patch** starten und gegebenenfalls mit dem bestehenden NIU-Konto anmelden.
+2. In NIU Patch **Profil/Ich → Einstellungen → Über** öffnen. Das neue Menü zeigt **NIU Patch** und **5.12.2 · Manuelle Firmwarequelle für KQi 300X**.
+3. **DE**, **EU** oder **US** wählen und **Quelle prüfen und aktivieren** antippen. Auf **Aktiv: …**, die richtige Zielversion und die bestätigte JSON-/BIN-Prüfung warten. Das startet noch keine Übertragung.
+4. Optional **Interner Test – ohne Roller** wählen. Er prüft die vorbereitete Antwort im NIU-Parser; er bestätigt keine Bluetooth-Verbindung und keinen erfolgreichen Flash.
+5. Für einen Vorgang am Roller die [vollständige Anleitung](docs/niu-patch-anleitung.md#6-das-tatsächliche-update-angebot-prüfen) lesen: richtige Verbindung, ausschließlich neues Motorcontroller-/FOC-Angebot und passende Zielversion prüfen, bevor auf der Fahrzeug-Firmwareseite ein Update gestartet wird.
+6. Nach beendetem Vorgang im Zusatzmenü **Manuelle Quelle deaktivieren** wählen und **Manuelle Quelle: aus** kontrollieren. Das setzt die Roller-Firmware nicht zurück.
+
+**Prüfstand:** Als Update über die bisherige 4.8.12 auf einem Samsung mit Android 13 installiert; Appdaten und Anmeldung blieben im Gerätetest erhalten. Menü, US-JSON/BIN-Prüfsumme und der interne NIU-Parser-Test funktionierten. **Kein Roller verfügbar: Bluetooth und Firmwareübertragung mit diesem Release noch nicht getestet.** Die frühere **BT-Secrets-Kopierfunktion ist nicht enthalten**. Paket, Hash und Einzelprüfungen stehen im [öffentlichen Prüfbericht](apps/niu-patch/verification-5.12.2-r1.json).
+
+Wer die separate Test-App **NIU Patch 5** (`com.niu.patchv5`) verwendet: zuerst diese neue **NIU Patch** installieren und prüfen, danach die zusätzliche Test-App entfernen. Ihre Anmeldung wird nicht automatisch zwischen den Paketen übertragen. Die neue Veröffentlichung ist keine weitere separate Patch-App.
 
 ## Firmware Analyse im Überblick
 

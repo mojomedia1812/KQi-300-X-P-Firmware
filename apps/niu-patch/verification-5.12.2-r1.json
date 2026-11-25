@@ -1,0 +1,62 @@
+{
+  "release_tag": "niu-patch-v5.12.2-r1",
+  "file": "NIU_Patch.apk",
+  "sha256": "fee47a901ec2dbbee9817afbc964266bf218412caf0a2658c99c51bb1e114a2d",
+  "size": 96503576,
+  "label": "NIU Patch",
+  "package": "com.niu.lxckb9p",
+  "base_version": "5.12.2",
+  "version_code": 51051202,
+  "android_minimum_sdk": 26,
+  "architecture": "arm64-v8a",
+  "official_package": "com.niu.manager",
+  "same_signer_as_previous_parallel": true,
+  "signer_certificate_sha256": "93b7b25c99cbbdd71d97bb4f73edaa70572d5a7c88a111c0ea9199345b6f2cd3",
+  "release_url": "https://github.com/mojomedia1812/KQi-300-X-P-Firmware/releases/tag/niu-patch-v5.12.2-r1",
+  "download_url": "https://github.com/mojomedia1812/KQi-300-X-P-Firmware/releases/download/niu-patch-v5.12.2-r1/NIU_Patch.apk",
+  "checksums_url": "https://github.com/mojomedia1812/KQi-300-X-P-Firmware/releases/download/niu-patch-v5.12.2-r1/SHA256SUMS.txt",
+  "verification_url": "https://github.com/mojomedia1812/KQi-300-X-P-Firmware/releases/download/niu-patch-v5.12.2-r1/NIU_Patch_verification.json",
+  "can_coexist_with_official_niu": true,
+  "replaces_previous_niu_patch": true,
+  "bluetooth_vehicle_test_performed": false,
+  "firmware_transfer_performed": false,
+  "source_xapk_sha256": "005ca8099e7b90557bcf8127389f1a4ab418079bf6a1c2c502928dd9af53def7",
+  "modified_entries": [
+    "AndroidManifest.xml",
+    "classes2.dex",
+    "classes5.dex",
+    "resources.arsc"
+  ],
+  "apk_signature_schemes_verified": [
+    "v2",
+    "v3"
+  ],
+  "zipalign_4_byte_check_passed": true,
+  "zip_integrity_passed": true,
+  "verified_dex_checksums": [
+    "classes.dex",
+    "classes2.dex",
+    "classes3.dex",
+    "classes4.dex",
+    "classes5.dex",
+    "classes6.dex",
+    "classes7.dex"
+  ],
+  "unchanged_official_native_libraries": 31,
+  "provided_symbol_references_checked": 302,
+  "host_contract_assertions_passed": 51,
+  "device_model": "Samsung SM-N981B",
+  "device_android": 13,
+  "installed_apk_matches_delivered_file": true,
+  "app_data_cleared": false,
+  "app_started_without_login_prompt": true,
+  "manual_menu_opened": true,
+  "public_json_and_binary_md5_checked_on_device": "US / KBE13D03",
+  "original_niu_json_parser_accepted_foc_response": true,
+  "manual_source_disabled_after_test": true,
+  "parallel_packages_confirmed": [
+    "com.niu.manager",
+    "com.niu.lxckb9p"
+  ],
+  "previous_4_8_12_updated_in_place": true
+}

@@ -30,4 +30,4 @@ Das Skript prüft die öffentlichen Quell-PNG-Hashes und ergänzt ausschließlic
 
 **Nicht aufgenommen:** ein neu angebotenes FOC-Update, ein Bestätigungsdialog zum Flash, Fortschrittsanzeige und Erfolgsmeldung. Dafür ist ein erreichbarer passender Roller erforderlich. Die Aufnahme der Fahrzeugverwaltung belegt den Einstieg und den nicht verbundenen Zustand, keinen erfolgreichen Flash. Der spätere Knopf **Jetzt aktualisieren** ist deshalb in diesen Bildern nicht dargestellt und nicht mit Markierung 10 zu verwechseln.
 
-Zurück zur [vollständigen Anleitung](../../niu-patch-anleitung.md).
+Zur [archivierten bebilderten Anleitung für 4.8.12](../../niu-patch-anleitung-4.8.12.md) oder zur [aktuellen Anleitung für 5.12.2](../../niu-patch-anleitung.md).

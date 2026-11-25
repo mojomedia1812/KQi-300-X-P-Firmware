@@ -1,288 +1,164 @@
-# NIU KQi 300X mit NIU Patch: Schritt für Schritt
+# NIU KQi 300X mit NIU Patch 5.12.2: Schritt für Schritt
 
-Stand: **25. November 2026**. Für **NIU Patch 4.8.12 r1** aus diesem Repository und einen **NIU KQi 300X**.
+Stand: **25. November 2026**, Release **`niu-patch-v5.12.2-r1`**. Diese Anleitung gilt für die neue App **NIU Patch 5.12.2**, nicht für die frühere 4.8.12-Oberfläche.
 
-**Die originale NIU-App bleibt installiert.** NIU Patch ist eine zweite App. Beide können auf demselben Handy installiert sein. Während der Verbindung zum Roller verwendest du jeweils nur eine davon.
+> [!IMPORTANT]
+> **NIU Patch bleibt parallel zur originalen NIU-App installiert.** Diese Version ersetzt eine bisherige **NIU Patch / NIU Parallel** aus diesem Projekt mit derselben Paketkennung und Signatur als Android-App-Update. Die bestehende Patch-App dafür **nicht vorher deinstallieren**.
 
-Die Anleitung wurde mit öffentlich zugänglichen Anleitungen, den APK-Bedienelementen und dem Update-Code abgeglichen. Die Bilder wurden mit dem veröffentlichten Release auf einem Samsung SM-N981B mit Android 13 aufgenommen. Anmeldung und die hier gezeigten Menüs wurden am Handy geprüft; der Roller war bei den Aufnahmen nicht erreichbar. Ein vollständiger Flash wurde **nicht am Fahrzeug durchgespielt**. Die [Quellenprüfung](niu-patch-quellen.md) erklärt die Nachweise und offenen Punkte. Eine unbekannte Hardware- oder Firmwarevariante wird durch diese Anleitung nicht automatisch kompatibel.
+> [!NOTE]
+> **Am Handy geprüft, noch nicht am Roller geflasht:** Update von 4.8.12 auf 5.12.2 ohne Löschen der Appdaten, Start ohne erneute Anmeldung, Menü, US-JSON und BIN-Prüfsumme sowie eine vorbereitete FOC-Antwort im tatsächlichen NIU-Parser. Kein Roller war verfügbar; Bluetooth-Verbindung, Update-Angebot am Fahrzeug und Firmwareübertragung sind mit diesem Release **nicht getestet**. Die Schritte am Roller beschreiben den vorgesehenen Ablauf, keinen nachgewiesenen erfolgreichen Flash.
 
-## So liest du die Bilder
+Die [bisherige bebilderte Anleitung für 4.8.12](niu-patch-anleitung-4.8.12.md) bleibt als Archiv erhalten. Ihre englischen Knöpfe **Update**, **Copy to clipboard** und **Back to main app** gehören zur alten Version. In 5.12.2 heißen die relevanten Knöpfe **Quelle prüfen und aktivieren**, **Manuelle Quelle deaktivieren** und **Zurück zur NIU-App**. Eine **BT-Secrets-Kopierfunktion ist in 5.12.2 nicht enthalten**.
 
-**Orange Rahmen markieren das Bedienelement. Die Pfeilspitze zeigt eine Stelle, auf die du tippen kannst. Die Zahl steht für die im Bildtext erklärte Aktion.** Die Zahlen 1 bis 13 begleiten den Ablauf. Einstellungen (**3**) und Fahrzeugauswahl (**9**) haben jeweils ein eigenes Bild an der passenden Stelle im Ablauf.
+## 1. Was die einzelnen Schritte bewirken
 
-Die Aufnahmen zeigen Deutsch mit einigen englischen Beschriftungen und dunklem Design. Dein Handy kann anders aussehen. Die Android-App-Info ist zusätzlich als Installationskontrolle abgebildet. Profil und Fahrzeugverwaltung wurden zur Anonymisierung mit Bildbearbeitung verändert; diese zwei Bilder sind nicht pixelidentisch mit den Rohaufnahmen. Die markierten Bedienelemente wurden mit den echten Ansichten abgeglichen. Die übrigen Quellaufnahmen blieben unverändert. Rahmen, Pfeile und Zahlen wurden als separate SVG-Elemente ergänzt; für die Anzeige hier wurden daraus PNG-Bilder gerendert. [Bildherkunft und Bearbeitung](assets/niu-patch/README.md).
-
-**Es gibt hier kein Bild eines angebotenen Updates, einer laufenden Übertragung oder einer Erfolgsmeldung:** Ohne Bluetooth-Verbindung lässt sich diese Ansicht auf dem vorhandenen Handy nicht erreichen. Die folgenden Bilder sind deshalb kein Beleg für einen erfolgreichen Flash.
-
-## Zuerst verstehen: Was passiert?
-
-Du führst drei getrennte Vorgänge aus:
-
-| Vorgang | Was sich ändert | Wird dabei schon der Roller beschrieben? |
+| Aktion | Wirkung | Schreibt sie bereits Firmware auf den Roller? |
 |---|---|---|
-| NIU Patch installieren | Eine zusätzliche App kommt aufs Android-Handy. | Nein. |
-| Eine `update.json` eintragen und dort **Update** drücken | Die App speichert die Adresse der gewünschten Update-Beschreibung. | Nein. |
-| In der Fahrzeug-Firmwareaktualisierung **Jetzt aktualisieren** wählen und eine gegebenenfalls folgende Bestätigung annehmen | Die App lädt die Firmware und überträgt sie per Bluetooth zum Motorcontroller. | **Hier beginnt der eigentliche Update-Vorgang.** |
+| `NIU_Patch.apk` installieren | Installiert die App oder aktualisiert die bisherige NIU Patch. | Nein. |
+| **DE**, **EU** oder **US** wählen | Trägt die JSON-Adresse ein und deaktiviert eine zuvor aktive manuelle Quelle. | Nein. |
+| **Quelle prüfen und aktivieren** | Lädt und prüft JSON und BIN; aktiviert danach die vorbereitete FOC-Update-Antwort. | Nein. |
+| **Interner Test – ohne Roller** | Prüft diese Antwort mit Testdaten und dem tatsächlichen NIU-Parser. | Nein. |
+| In der Fahrzeug-Firmwareseite **Jetzt aktualisieren** und gegebenenfalls die anschließende Bestätigung wählen | Startet den eigentlichen Fahrzeug-Update-Ablauf. | **Ab hier ist mit einer Übertragung zu rechnen.** |
+| **Manuelle Quelle deaktivieren** | Schaltet wieder auf die normale Firmwareprüfung um. | Nein; setzt auch keine Roller-Firmware zurück. |
 
-**FOC** ist die Bezeichnung des Motorcontrollers. **APK** ist die Android-Installationsdatei. **JSON** ist hier eine kleine Beschreibung mit Download-Adresse, Version und Prüfsumme. **BIN** ist die eigentliche Firmwaredatei; deren Adresse gehört nicht ins Eingabefeld für die JSON.
+**FOC** bezeichnet den Motorcontroller. **App-Update** und **Roller-Firmwareupdate** sind zwei verschiedene Vorgänge.
 
-## 1. Vorbereitung
+## 2. Die richtige APK herunterladen und installieren
 
-1. Lies am Typenschild bzw. in deinen Fahrzeugunterlagen nach, dass dein Roller wirklich **KQi 300X** ist. Diese Anleitung nicht für einen **300P, 300S, KQi2 oder KQi3** verwenden. Auch ein ersetzter Controller kann eine andere Ausgangslage bedeuten.
-2. Benutze ein **Android-Handy mit Bluetooth und Internetzugang**. Auf einem iPhone lässt sich diese APK nicht installieren. Eine USB-Verbindung zum Computer ist für diesen Vorgang nicht erforderlich.
-3. Stelle sicher, dass du dich mit dem NIU-Konto anmelden kannst, an das der Roller bereits gebunden ist. Halte Passwort bzw. die benötigte Möglichkeit zum Empfang eines Anmeldecodes bereit. **Nicht den Roller aus dem Konto entfernen.**
-4. Öffne die originale NIU-App. Kontrolliere dort Modell und Erreichbarkeit des Rollers. Falls er noch gar nicht eingerichtet wurde, schließe zuerst die reguläre Einrichtung gemäß NIU-Anweisungen ab. Ein Firmwareupdate auf Verdacht ist dafür nicht erforderlich.
-5. Notiere oder fotografiere die aktuell angezeigten Firmwareversionen von Motorcontroller, Dashboard, Bluetooth und Akku. Ein Screenshot ist nur eine Dokumentation; er ist **keine Sicherung deiner installierten Firmware**.
-6. Lade Roller und Handy ausreichend auf. Als vorsichtige Arbeitsvorgabe für diese Anleitung: **Roller mindestens 80 %, Handy mindestens 50 %**. Das sind Reserven für den Ablauf, keine nachgewiesenen Mindestgrenzen dieser App. Höhere Anforderungen einer angezeigten Update-Meldung gelten zusätzlich.
-7. Stelle den Roller trocken und stabil ab. Trenne vor dem Update das Ladegerät vom Roller. Der Roller bleibt während der Übertragung stehen; niemand fährt damit oder betätigt Gas und Bremse.
-8. Sorge für eine stabile Internetverbindung. WLAN ist grundsätzlich möglich. Mobile Daten sind eine Alternative, falls die Download-Adressen über dein WLAN nicht erreichbar sind. Schalte Bluetooth und, wenn von Android für die Gerätesuche verlangt, Standort ein.
-9. Plane ungestörte Zeit ein. Das Handy bleibt während des Updates direkt beim Roller, mit eingeschaltetem Bildschirm. Als praktische Empfehlung: höchstens etwa einen Meter Abstand.
+Voraussetzung: **Android 8 oder neuer und ARM64**. Diese APK ist kein Installer für iPhones, x86-Geräte oder ausschließlich 32-Bit-Android.
 
-**Kontrolle:** Richtiges Modell, Zugang zum bestehenden Konto, aktuelle Versionen dokumentiert, ausreichende Akkureserven vorhanden.
+1. Lade **[NIU_Patch.apk aus dem Release 5.12.2 r1](https://github.com/mojomedia1812/KQi-300-X-P-Firmware/releases/download/niu-patch-v5.12.2-r1/NIU_Patch.apk)** herunter. Öffne die heruntergeladene APK, keine BIN- oder JSON-Datei.
+2. Lass die **originale NIU-App** installiert.
+3. Ist die bisherige **NIU Patch / NIU Parallel** aus diesem Projekt installiert, lass auch sie installiert. Öffne die neue APK und wähle im Android-Dialog **Aktualisieren / Installieren**. Dieselbe Paketkennung `com.niu.lxckb9p`, derselbe Signaturschlüssel und der höhere Versionscode ermöglichen das Update.
+4. Falls Android die Installation aus dem verwendeten Browser oder Dateimanager noch nicht erlaubt, folge der angezeigten Freigabe für genau diese Quelle und öffne die APK anschließend erneut.
+5. Warte auf **App installiert** und öffne **NIU Patch**. Der sichtbare Name bleibt **NIU Patch**, ohne angehängte 5.
+6. Bei einem normalen Update bleiben die bisherigen Android-Appdaten erhalten. Auf dem geprüften Handy blieb auch die Anmeldung bestehen. Falls die App erneut eine Anmeldung verlangt, verwende dein bestehendes NIU-Konto.
+7. Kontrolliere später unter **Profil/Ich → Einstellungen → Über**, dass das neue Menü **NIU Patch** die Zeile **5.12.2 · Manuelle Firmwarequelle für KQi 300X** zeigt.
 
-## 2. NIU Patch installieren
+**Nur falls du die frühere separate Test-App „NIU Patch 5“ installiert hast:** Sie verwendet `com.niu.patchv5` und wird von dieser APK nicht automatisch ersetzt. Installiere zuerst die neue **NIU Patch**, prüfe Start und Anmeldung und entferne danach ausschließlich die zusätzliche Test-App **NIU Patch 5**. Deren eigene Anmeldung wird nicht zwischen Android-Paketen übertragen. Auf dem bereits geprüften Handy ist diese Bereinigung erfolgt.
 
-1. Öffne auf dem Android-Handy den **[Download der NIU_Patch.apk](https://github.com/mojomedia1812/KQi-300-X-P-Firmware/releases/download/niu-patch-v4.8.12-r1/NIU_Patch.apk)**.
-2. Warte, bis der Download vollständig abgeschlossen ist.
-3. Öffne im Browser die Downloads oder die Android-App **Dateien / Eigene Dateien → Downloads**.
-4. Tippe auf **NIU_Patch.apk**.
-5. Wenn Android fragt, ob diese Quelle Apps installieren darf, öffne die angebotenen Einstellungen und erlaube die Installation für den gerade verwendeten Browser oder Dateimanager. Die genaue Android-Beschriftung unterscheidet sich je Hersteller. Kehre anschließend zur Installationsabfrage zurück.
-6. Tippe auf **Installieren** und warte auf die Erfolgsmeldung. Sicherheitsprüfungen nicht pauschal deaktivieren. Wenn Android die Installation blockiert, zuerst die genaue Meldung lesen; siehe Fehlerhilfe unten.
-7. Wenn du bisher **NIU Parallel** aus diesem Projekt installiert hattest, darf Android ein **Update** dieser App anbieten. Das ist beabsichtigt: dieselbe Paketkennung und derselbe Signaturschlüssel, neuer sichtbarer Name.
-8. Öffne die zusätzliche App **NIU Patch**. Kontrolliere im Zweifel über **App-Symbol lange drücken → App-Info**, dass du die Patch-App geöffnet hast.
+Bei Signatur- oder Paketkonflikten keine vorhandene App mit wichtigen Daten vorschnell deinstallieren. Notiere die genaue Meldung und vergleiche die [Paket- und Signaturdaten](niu-patch.md).
 
-Die normale NIU-App heißt weiterhin NIU. Die Patch-App hat die Paketkennung `com.niu.lxckb9p`; die originale App `com.niu.manager`. **NIU Patch installiert sich neben die originale App.** Wenn eine Installation stattdessen die originale NIU-App ersetzen soll, brich sie ab und überprüfe die heruntergeladene Datei.
-
-Dateigröße dieses Releases: **72.602.525 Byte**. SHA-256:
+SHA-256 der APK; zusätzlich liegen [SHA256SUMS.txt und der Prüfbericht im Release](https://github.com/mojomedia1812/KQi-300-X-P-Firmware/releases/tag/niu-patch-v5.12.2-r1):
 
 ```text
-c2fcef9bd1d2b23cf47e9213cefc907b760f94266b49c39d3a3b574aa32471b2
+fee47a901ec2dbbee9817afbc964266bf218412caf0a2658c99c51bb1e114a2d
 ```
 
-**Kontrolle:** Auf dem Handy gibt es NIU und NIU Patch. Die Original-App wurde nicht deinstalliert.
+**Kontrolle:** Originale NIU und NIU Patch sind installiert; NIU Patch zeigt Version 5.12.2. Ein Android-App-Update hat noch keine Roller-Firmware geändert.
 
-<img src="assets/niu-patch/00-open.png" width="432" alt="Android-App-Info von NIU Patch: Markierung 1 zeigt auf Öffnen.">
+## 3. Konto und Verbindung vorbereiten
 
-**Bild 1 — Installierte App kontrollieren und öffnen.** Oben muss **NIU Patch** stehen. **1:** unten links **Öffnen** antippen. Die benachbarten Schaltflächen **Deinstallieren** und **Stopp erzwingen** gehören nicht zu diesem Schritt. Diese Samsung-Ansicht erreichst du über **App-Symbol lange drücken → App-Info**; auf anderen Android-Geräten sieht sie anders aus.
+1. Öffne **NIU Patch**. Bei einer Neuinstallation musst du dich separat mit dem bestehenden Konto anmelden, an das der KQi 300X gebunden ist. Die Anmeldung der originalen NIU-App wird nicht übernommen.
+2. Ist der Roller im Konto nicht aufgeführt, prüfe Konto und Anmelderegion. Nicht als Standardlösung entbinden oder ein neues Konto anlegen.
+3. Bevor du den Roller verbindest, schließe die originale NIU-App und andere aktive Handy-Verbindungen zum Roller. Beide Apps dürfen installiert sein; verwende für die Fahrzeugverbindung jeweils eine.
+4. Halte Handy und Roller ausreichend geladen, stelle eine stabile Internetverbindung her und bleibe mit dem Handy beim Roller. Erfülle zusätzlich alle von der App angezeigten Update-Voraussetzungen. Eine konkrete, mit diesem Release geprüfte Akku-Mindestgrenze liegt nicht vor.
+5. Schalte den Roller und Bluetooth am Handy ein. Erlaube NIU Patch die angeforderten Bluetooth-/Geräte-in-der-Nähe-Berechtigungen; falls Android bei der Suche Standort verlangt, folge dem entsprechenden Hinweis.
+6. Wähle den vorhandenen **KQi 300X** in NIU Patch und stelle die Verbindung innerhalb der App her. Erzwinge keine zusätzliche Kopplungsfolge, solange die App sie nicht verlangt.
+7. Prüfe aktuelle Verbindung und lesbare Fahrzeugdaten. Ein gespeichertes Fahrzeugbild oder alte Akkuwerte belegen keine Verbindung.
+8. Notiere die bisher angezeigte Motorcontroller-Version, bevor du etwas am Fahrzeug aktualisierst.
 
-## 3. Anmelden und die Verbindung prüfen
+**Die Modellprüfung bleibt bei dir:** Die Injektion erkennt eine passende KBE-Firmwarefamilie in der OTA-Anfrage; das ist kein unabhängiger Nachweis des physischen Rollermodells. Dieses Projekt enthält 300X-Dateien, keine nachgewiesen kompatiblen 300P-Dateien.
 
-1. Schließe die originale NIU-App. Um eine weiterlaufende Verbindung sicher zu beenden: **NIU-Symbol lange drücken → App-Info → Beenden erzwingen / Stopp erzwingen**. Das löscht keine App-Daten.
-2. Schließe gegebenenfalls auch eine auf einem anderen Handy aktive Verbindung zum Roller.
-3. Schalte den Roller ein.
-4. Öffne **NIU Patch**.
-5. Melde dich mit **demselben bestehenden NIU-Konto** an, an das dein Roller gebunden ist. Eine neue Installation übernimmt die Anmeldung der Original-App nicht.
-6. Erlaube die angefragten Berechtigungen für die Bluetooth-Suche. Je nach Android-Version heißt die Freigabe **Geräte in der Nähe**, **Bluetooth** oder **Standort**. Manche ältere Apps benötigen auch eingeschalteten Standort für den Suchvorgang.
-7. Wähle deinen vorhandenen Roller aus. Ist er nicht aufgeführt, überprüfe Konto und Anmelderegion. **Nicht als ersten Versuch entbinden oder ein neues Konto anlegen.**
-8. Stelle die Verbindung innerhalb von NIU Patch her. Keine zusätzliche manuelle Kopplung in den Android-Bluetooth-Einstellungen erzwingen, solange die App sie nicht verlangt. Folge einer gegebenenfalls ausdrücklich angezeigten Bestätigung am Roller.
-9. Prüfe, ob die App eine aktuelle Bluetooth-Verbindung anzeigt und Fahrzeugdaten lesen kann. Ein gespeichertes Rollerbild oder eine alte Akkuanzeige allein beweist keine aktive Verbindung.
+## 4. Region auswählen und Quelle prüfen
 
-**Kontrolle:** NIU Patch ist angemeldet, der richtige Roller ist ausgewählt, Bluetooth ist verbunden. Bei einer Fehlermeldung hier anhalten und zuerst die Verbindung klären.
+Für das Prüfen der Quelle ist Internet erforderlich; der Roller muss dafür noch nicht verbunden sein.
 
-<img src="assets/niu-patch/01-home.png" width="432" alt="Fahrzeugansicht von NIU Patch: Markierung 2 zeigt auf den Profilbereich Ich.">
+1. Öffne **NIU Patch → Profil/Ich → Einstellungen → Über**. Am geprüften Handy und vom Nutzer wurde bestätigt, dass dort das zusätzliche Menü erscheint.
+2. Kontrolliere die Überschrift **NIU Patch** und die Versionszeile **5.12.2**.
+3. Wähle genau eine Region über **DE**, **EU** oder **US**. Der passende vollständige Link erscheint unter **Link zur update.json**.
+4. Vergleiche Region und gewünschte Zielversion mit dieser Tabelle:
 
-**Bild 2 — Zum Profil wechseln.** **2:** unten rechts auf **Ich** tippen. Die Aufnahme entstand ohne Bluetooth-Verbindung: das durchgestrichene Bluetooth-Symbol und die gespeicherten Akku-/Reichweitenwerte sind **keine** Bestätigung einer aktuellen Verbindung.
-
-## 4. Bluetooth-Schlüssel sichern
-
-Diese Sicherung ist besonders vor einem späteren Löschen der Patch-App-Daten wichtig. Sie ersetzt weder dein NIU-Konto noch eine Firmware-Sicherung. Eine Wiederherstellung nach einer Kontosperre wurde mit diesem Release nicht geprüft.
-
-1. Öffne in **NIU Patch** den Profilbereich unten: je nach Sprache **Ich / Me / Account**.
-2. Öffne dort das **Zahnrad / Einstellungen**. In den verbreiteten Anleitungen befindet es sich oben links; orientiere dich am Symbol und an der Beschriftung.
-3. Tippe auf **Über**; bei Englisch **About**.
-4. Es soll die zusätzliche Manual-Update-Seite erscheinen. Du erkennst sie an **Link to update json**, **Update**, **Copy to clipboard** und **Back to main app**. Ihr interner Titel lautet **Niu Manual Update**; auf dem aufgenommenen Handy wird dieser Titel nicht als Überschrift eingeblendet. Die zusätzlichen Bedienelemente sind Englisch.
-5. Unter der Überschrift **BT Secrets!** tippe auf **Copy to clipboard**.
-6. Öffne eine private, dauerhaft gespeicherte Notiz, vorzugsweise im Passwortmanager, und füge den Inhalt ein. Schreibe dazu, zu welchem Roller und Datum er gehört.
-7. Kontrolliere, dass tatsächlich Inhalt eingefügt wurde. Eine Meldung **bt secrets not set** bedeutet: Es wurde **keine** Schlüsselsicherung erstellt. In diesem Fall zurück in die App, Anmeldung und Verbindung prüfen und anschließend noch einmal versuchen.
-8. Veröffentliche diese Daten nicht in GitHub-Issues, Screenshots oder öffentlichen Chats.
-9. Kehre zu **NIU Patch → Einstellungen → Über** zurück.
-
-**Kontrolle:** Die Schlüsseldaten sind außerhalb der Zwischenablage dauerhaft gespeichert. Wenn die Sicherung trotz funktionierender Verbindung nicht gelingt, ist die Ursache offen; insbesondere keine App-Daten löschen, solange du auf diese lokale Sicherung angewiesen bist.
-
-<img src="assets/niu-patch/02-open-settings.png" width="432" alt="Profil von NIU Patch: ausschließlich Markierung 3 auf dem Einstellungssymbol. Kontoname anonymisiert.">
-
-**Bild 3 — Einstellungen finden.** **3:** oben links auf das sechseckige Einstellungssymbol tippen. Der Kontoname wurde anonymisiert.
-
-<img src="assets/niu-patch/03-settings.png" width="432" alt="Einstellungen von NIU Patch: Markierung 4 zeigt auf Über in der Zeile mit Version 4.8.12.">
-
-**Bild 4 — Zusatzmenü öffnen.** **4:** auf die gesamte Zeile **Über** neben **4.8.12** tippen. Die darüberliegende Zeile **Cache löschen** und **Abmelden** weiter unten nicht betätigen.
-
-<img src="assets/niu-patch/04-keys.png" width="432" alt="Manual-Update-Seite: Markierung 5 zeigt auf Copy to clipboard unter BT Secrets.">
-
-**Bild 5 — Schlüsselsicherung beginnen.** **5:** **Copy to clipboard** unter **BT Secrets!** antippen. Danach selbst in eine private, dauerhaft gespeicherte Notiz einfügen und den Inhalt prüfen. Das Foto zeigt nur den Knopf; es wurden für die Veröffentlichung keine Bluetooth-Schlüssel ausgelesen oder abgebildet. Der graue KQi3-Beispieltext im Eingabefeld ist ein Platzhalter und keine für den 300X ausgewählte Datei.
-
-## 5. Gewünschte Region auswählen
-
-Wähle **genau eine** Region. Du gibst im nächsten Abschnitt nur deren vollständige JSON-Adresse ein.
-
-| Auswahl | Erwartete Größenordnung | Zielversion im Update-Angebot | Firmwaredatei |
+| Auswahl | FOC-Zielversion | BIN-Datei | Geschwindigkeitsangabe |
 |---|---|---|---|
-| DE | etwa **21 km/h**, vom Nutzer berichtet | `KBE38D05` | `KBE38M02.bin` |
-| EU | nominell **25 km/h**; hier kein unabhängiger Fahrtest | `KBE01D03` | `KBE01M02.bin` |
-| US | etwa **38 km/h**, vom Nutzer berichtet | `KBE13D03` | `KBE13M02.bin` |
+| DE | `KBE38D05` | `KBE38M02.bin` | etwa 21 km/h vom Nutzer berichtet |
+| EU | `KBE01D03` | `KBE01M02.bin` | 25 km/h nominell; kein eigener Fahrtest |
+| US | `KBE13D03` | `KBE13M02.bin` | etwa 38 km/h vom Nutzer berichtet |
 
-Die [Analyse der Begrenzungen](speed-limits.md) und der [EU-Vergleich](eu-speed-limits.md) unterscheiden nominelle Werte, interne Telemetrie und gemessene Fahrgeschwindigkeit. Eine konkrete GPS-Geschwindigkeit kann diese Anleitung nicht garantieren. Zusätzliche Funktionen wie Tempomat, Zero-Start und Halo-Licht sind mit diesen Dateien nicht vollständig verifiziert.
+5. Tippe **Quelle prüfen und aktivieren**.
+6. Warte, bis die Prüfung beendet ist. Die App lädt die JSON und die BIN und vergleicht unter anderem FOC, Zielversion, URL, Dateigröße **29.696 Byte** und die hinterlegte MD5-Prüfsumme.
+7. Fahre nur weiter, wenn **Aktiv: DE**, **Aktiv: EU** oder **Aktiv: US** mit der passenden Zielversion erscheint und der Status die geprüfte Quelle und BIN-Prüfsumme bestätigt.
+8. Erscheint **Nicht aktiviert: …**, lies die konkrete Meldung und behebe den Fehler. Nach einer fehlgeschlagenen Prüfung ist die manuelle Quelle nicht aktiv.
 
-**US – diesen gesamten Text kopieren:**
+**Bis hier wurde keine Firmware auf den Roller übertragen.** Die App akzeptiert nur die vorgesehenen DE-/EU-/US-Quellen aus diesem Repository; eine beliebige fremde JSON lässt sich nicht freischalten. Eine neue Regionswahl oder eine Änderung am Link deaktiviert die vorherige Quelle. Danach musst du erneut **Quelle prüfen und aktivieren** wählen. Beim erneuten Öffnen des Menüs wird der Link einer aktiven Quelle angezeigt; der Status **Aktiv: …** ist die entscheidende Kontrolle.
 
-```text
-https://github.com/mojomedia1812/KQi-300-X-P-Firmware/raw/refs/heads/main/300X/US/update.json
-```
+Die [Firmwareanalyse](speed-limits.md) und der [EU-Vergleich](eu-speed-limits.md) unterscheiden nominelle Grenzen, Telemetrieskala und berichtete Fahrgeschwindigkeit. Eine bestimmte GPS-Geschwindigkeit, Tempomat, Zero-Start oder Halo-Licht sind durch die Quellenprüfung nicht garantiert.
 
-**EU – diesen gesamten Text kopieren:**
+## 5. Optional: ohne Roller testen
 
-```text
-https://github.com/mojomedia1812/KQi-300-X-P-Firmware/raw/refs/heads/main/300X/EU/update.json
-```
+1. Lass die erfolgreich geprüfte Quelle aktiv.
+2. Tippe **Interner Test – ohne Roller**.
+3. Warte auf **Interner Test bestanden** und die richtige FOC-Zielversion.
+4. Lies die Einschränkung in der Meldung: **Bluetooth-Verbindung und Übertragung zum Roller wurden nicht getestet.**
 
-**DE – diesen gesamten Text kopieren:**
+Der Test verwendet synthetische Anfragedaten und den echten JSON-Parser der NIU-App. Er sendet keinen Firmware-Flash und keine echte Kontoanfrage. Ein bestandener Test ersetzt die Kontrolle des tatsächlichen Update-Angebots am verbundenen KQi 300X nicht. Wenn du nur testen möchtest, wähle jetzt **Manuelle Quelle deaktivieren** und kontrolliere **Manuelle Quelle: aus.**
 
-```text
-https://github.com/mojomedia1812/KQi-300-X-P-Firmware/raw/refs/heads/main/300X/DE/update.json
-```
+## 6. Das tatsächliche Update-Angebot prüfen
 
-Die Zielversion enthält **D**, die BIN-Datei **M**. Diese unterschiedlichen Kennungen sind im Bestand vorhanden und kein Anlass, Dateien umzubenennen oder Versionsangaben zu erfinden.
+**Ab hier ist der passende, eingeschaltete und per Bluetooth verbundene Roller nötig. Dieser Teil wurde mit 5.12.2 nicht am Fahrzeug getestet.**
 
-## 6. Den Update-Link in NIU Patch speichern
+1. Kontrolliere, dass deine gewünschte Quelle aktiv ist, die originale NIU-App geschlossen ist und NIU Patch eine aktuelle Bluetooth-Verbindung hat.
+2. Tippe **Zurück zur NIU-App**.
+3. Öffne **Profil/Ich → Mein Gerät → vorhandener KQi 300X → Verwalten → Firmwareaktualisierung**. Der Weg zur Fahrzeugverwaltung wurde mit 4.8.12 geprüft; Beschriftungen und Angebot können in 5.12.2 abweichen.
+4. Warte auf die Firmwareprüfung. War diese Ansicht schon vorher geöffnet, verlasse sie und öffne sie erneut, damit eine neue Abfrage erfolgt.
+5. Prüfe das **neu angebotene** Update: ausschließlich Motorcontroller / **Motor Controller**, intern **FOC**, und die richtige Zielversion aus Abschnitt 4.
+6. Bereits installierte andere Komponenten können in einer Versionsübersicht auftauchen. Sollen zusätzlich **Akku/BMS, Dashboard/DB oder Bluetooth/ECU_BT neu aktualisiert werden**, starte nicht; das entspricht nicht dem FOC-Angebot dieses Projekts.
+7. Erscheint kein Angebot oder nur **neueste Firmware**, ist das kein Beweis einer erfolgreich installierten Zielregion. Folge der Fehlerhilfe unten.
+8. Stimmen Modell, Region, Zielversion oder Komponente nicht überein oder lassen sie sich nicht sicher prüfen, halte hier an.
 
-1. Kopiere die vollständige Adresse der gewählten Region aus Abschnitt 5. Wenn du zuvor die Bluetooth-Schlüssel kopiert hast, enthält deine Zwischenablage sonst möglicherweise noch diese Schlüssel.
-2. Öffne **NIU Patch → Ich / Me / Account → Zahnrad / Einstellungen → Über**.
-3. Kontrolliere, dass die zusätzliche Seite mit **Link to update json** und den englischen Knöpfen geöffnet ist. Die Überschrift **Niu Manual Update** muss auf deinem Handy nicht sichtbar sein.
-4. Tippe in das Eingabefeld direkt unter **Link to update json**.
-5. Falls schon Text darin steht: lange auf den Text drücken, **Alles auswählen**, anschließend **Einfügen**. Das genaue Einfüge-Menü hängt von deiner Tastatur ab.
-6. Vergleiche den eingefügten Text mit deiner Auswahl: Er beginnt mit `https://github.com/mojomedia1812/`, enthält `300X/US/`, `300X/EU/` oder `300X/DE/` und endet mit **`update.json`**. Keine Anführungszeichen, Leerzeichen oder zusätzliche Zeile mitkopieren. Nicht den Inhalt der JSON-Datei einfügen.
-7. Falls die Bildschirmtastatur den Knopf verdeckt, blende nur die Tastatur aus. Auf Android genügt dafür normalerweise die Zurück-Geste bzw. die Taste zum Verbergen der Tastatur.
-8. Tippe **einmal auf Update** auf dieser Seite.
-9. Achte sofort auf die kurz eingeblendete Textmeldung. Bei angenommener Eingabe zeigt sie die gespeicherte Adresse an. Ist die Meldung zu schnell verschwunden, darfst du mit korrekt gefülltem Feld noch einmal **Update** drücken.
-10. Bei **You must provide a link to a json file** wurde kein gültiger Link gespeichert. Korrigiere das Feld und wiederhole Schritt 8.
-11. Tippe auf **Back to main app**. Gehe zurück zur Fahrzeugansicht.
+Eine aktivierte Quelle kann bei einer passenden OTA-Abfrage ein Angebot liefern. Ob die konkrete Fahrzeug-/Firmwarekombination dieses Angebot annimmt und erfolgreich schreibt, ist noch offen.
 
-**Bis hier wurde noch keine Firmware auf den Roller geschrieben.** Die Link-Meldung bestätigt ausschließlich das Speichern, keine Erreichbarkeit und keine Kompatibilität. Die App prüft an dieser Stelle nur, ob die Eingabe nicht leer ist und `.json` enthält.
+## 7. Übertragung und Abschluss
 
-**Besonderheit:** Beim erneuten Öffnen dieser Seite wird der gespeicherte Link nicht automatisch in das Eingabefeld geladen. Ein leeres Feld bedeutet deshalb nicht, dass die Einstellung verloren ist. **Leeres Feld + Update** entfernt dagegen bewusst die manuelle Einstellung; das benötigst du erst nach Abschluss oder bei der Fehlerhilfe.
+1. Lies alle Hinweise auf der Fahrzeug-Firmwareseite und erfülle die angezeigten Bedingungen.
+2. Nur nach der Angebotskontrolle: Wähle **Jetzt aktualisieren / Update now** und prüfe gegebenenfalls den folgenden Bestätigungsdialog. Ab dem Start des Update-Ablaufs ist mit einer Firmwareübertragung zu rechnen.
+3. Lass NIU Patch im Vordergrund, den Bildschirm eingeschaltet und das Handy beim Roller. Schalte Bluetooth und Internet nicht ab und wechsle während einer laufenden Übertragung nicht zur originalen App.
+4. Schalte den Roller nicht von Hand aus und betätige währenddessen keine Fahrzeugbedienelemente. Folge ausdrücklich angezeigten App-Anweisungen; ein vom Controller selbst ausgelöster Neustart ist davon zu unterscheiden.
+5. Warte auf eine ausdrückliche Erfolgsmeldung. Ein abgeschlossener Download oder ein voller Fortschrittsbalken allein beweist keinen erfolgreichen Flash. Eine feste sichere Übertragungsdauer wurde hier nicht gemessen.
+6. Nach beendetem Vorgang: Verbinde bei Aufforderung erneut, öffne die Versionsübersicht und dokumentiere die angezeigte Motorcontroller-Version. Eine zwischengespeicherte Anzeige allein ist kein unabhängiger Auslesebeweis.
+7. Öffne **Profil/Ich → Einstellungen → Über → NIU Patch** und tippe **Manuelle Quelle deaktivieren**. **Nicht nach der alten Anleitung das Feld leeren und Update drücken.**
+8. Kontrolliere **Manuelle Quelle: aus. Die normale Firmwareprüfung ist aktiv.** Damit ist die App-Umleitung aus; die Roller-Firmware wird dadurch nicht zurückgesetzt.
+9. Schließe NIU Patch, bevor du für die normale Verwendung die originale NIU-App verbindest. Ein dort angebotenes Fahrzeug-Firmwareupdate wäre eine weitere Änderung am Roller.
+10. Prüfe nach einem abgeschlossenen Update zunächst Fehleranzeige, Bremsen und Licht im Stand. Bei Warnungen oder Fehlverhalten keine Probefahrt. Einen späteren Geschwindigkeitstest nur in einem geeigneten abgesperrten Bereich durchführen.
 
-<img src="assets/niu-patch/05-save-link.png" width="432" alt="Manual-Update-Seite mit eingegebener US-Adresse: 6 markiert das Link-Feld, 7 Update und 8 Back to main app.">
+## 8. Fehlerhilfe
 
-**Bild 6 — Link eintragen und speichern: 6 → 7 → 8.** **6:** die vollständige JSON-Adresse deiner gewählten Region ins Feld einfügen. **7:** auf **Update** tippen und die kurz eingeblendete Adresse prüfen. **8:** danach **Back to main app** antippen. Im Foto ist die US-Adresse nur als Eingabebeispiel eingetragen; sie wurde für diese Aufnahme **nicht gespeichert**. Das schmale Feld zeigt nur das Ende der langen Adresse. Du musst trotzdem den vollständigen Link kopieren, nicht nur den sichtbaren Ausschnitt. EU und DE verwenden dasselbe Eingabefeld.
+### Installation oder Anmeldung scheitert
 
-## 7. Das angebotene Firmwareupdate prüfen
+- Prüfe Android-Version, ARM64-Unterstützung, vollständigen Download und die genaue Android-Meldung. Vergleiche bei Bedarf die SHA-256-Prüfsumme.
+- Eine bereits installierte App mit gleicher Paketkennung und anderer Signatur kann nicht als normales Update ersetzt werden. Nicht vorschnell deinstallieren: Dabei würden ihre lokalen Daten verloren gehen.
+- Nutze das bestehende Konto und die richtige Anmelderegion. Die Anmeldung der originalen NIU-App und der früheren separaten Test-App wird nicht automatisch in NIU Patch übernommen.
+- Lösche nicht als Standardlösung Appdaten, Konto oder Fahrzeugbindung. Die frühere BT-Secrets-Kopierfunktion ist in diesem Release nicht vorhanden.
 
-1. Kontrolliere erneut: Roller eingeschaltet, NIU Patch per Bluetooth verbunden, originale NIU-App geschlossen.
-2. Öffne **Ich → Mein Gerät** und tippe auf die Karte deines bereits gebundenen KQi 300X (**Markierung 9 in Bild 7 unten**). Dieser Weg wurde am Handy geprüft und führt zur Seite **Verwalten**. Je Ansicht ist außerdem ein Einstieg über das Fahrzeugmenü, häufig die drei Punkte, möglich.
-3. Auf **Verwalten** tippe auf **Firmwareaktualisierung**; bei Englisch **Firmware Upgrade**.
-4. Warte auf die Update-Prüfung. Falls du diese Seite schon vor dem Eintragen der JSON geöffnet hattest, verlasse sie und öffne sie erneut, damit eine neue Prüfung erfolgt.
-5. Kontrolliere das **neu angebotene Update**: Es soll nur den Motorcontroller betreffen. Die sichtbare Komponentenbezeichnung kann **Motor Controller** lauten; in den Update-Daten heißt er **FOC**. Verlange deshalb nicht zwingend den wörtlichen Text FOC auf dem Bildschirm.
-6. Vergleiche die angebotene Zielversion mit Abschnitt 5: US `KBE13D03`, EU `KBE01D03`, DE `KBE38D05`.
-7. Bereits installierte Versionen anderer Komponenten können ebenfalls aufgelistet sein. Das ist nicht dasselbe wie ein neues Update für diese Komponenten. Falls zusätzlich **Akku/BMS, Dashboard/DB oder Bluetooth/ECU_BT neu aktualisiert werden sollen**, starte nicht; überprüfe App, Link und Angebot.
-8. Falls nur **Dies ist die neueste Firmware / Sie verwenden schon die neueste Fassung** erscheint, gehe zur Fehlerhilfe. Das ist kein Beweis, dass die gewählte Region installiert wurde.
+### Unter Über fehlt das neue Menü
 
-**Kontrolle vor dem Start:** KQi 300X, gewünschte Region, richtige Zielversion und ausschließlich ein neues Motorcontroller-Update. Stimmen diese Angaben nicht überein oder sind sie nicht erkennbar, hier anhalten.
+1. Prüfe den geöffneten App-Namen: **NIU Patch**, nicht NIU und nicht die separate Test-App NIU Patch 5.
+2. Prüfe die Version **5.12.2** und die Paketkennung `com.niu.lxckb9p` in der Android-App-Info bzw. den [Release-Daten](../apps/niu-patch/release.json).
+3. Öffne die **App-Einstellungen im Profil**, anschließend **Über**. Die Android-Systemeinstellungen und die Fahrzeug-Firmwareseite sind andere Ansichten.
 
-<img src="assets/niu-patch/05-select-vehicle.png" width="432" alt="Profil von NIU Patch: ausschließlich Markierung 9 auf der Karte des bereits gebundenen KQi 300X. Kontoname anonymisiert.">
+### Quelle lässt sich nicht aktivieren
 
-**Bild 7 — Vorhandenen Roller auswählen.** **9:** unter **Mein Gerät** auf die Karte deines KQi 300X tippen. **+ Geräteanbindung** nicht antippen; der Roller ist bereits im Konto vorhanden. Der Kontoname wurde anonymisiert.
+1. Prüfe die Internetverbindung. Ein Netzwerkwechsel ist nur vor einer Übertragung sinnvoll.
+2. Wähle die Region über **DE / EU / US** erneut, statt eine BIN-Adresse oder GitHub-Dateiansicht einzufügen.
+3. Tippe **Quelle prüfen und aktivieren** und lies die genaue Fehlermeldung.
+4. Bei einer Prüfsummenabweichung nicht umgehen oder Werte erfinden. Die App erwartet die geprüften Dateien dieses Releases. Der interne Test benötigt zuerst eine erfolgreich aktivierte Quelle.
 
-<img src="assets/niu-patch/06-firmware-entry.png" width="432" alt="Fahrzeugverwaltung von NIU Patch: Markierung 10 zeigt auf Firmwareaktualisierung. Seriennummer, VIN und Akkunummer anonymisiert.">
+### Kein Update-Angebot oder keine Bluetooth-Verbindung
 
-**Bild 8 — Firmwareprüfung öffnen.** **10:** die Zeile **Firmwareaktualisierung** antippen. Das ist der Einstieg zur Prüfung; es ist noch nicht der spätere Knopf **Jetzt aktualisieren**. Die Aufnahme zeigt ausdrücklich den Zustand **ohne Bluetooth-Verbindung**. In diesem Zustand erschien beim Antippen nur die Aufforderung, das Gerät mit Bluetooth zu verbinden und es erneut zu versuchen. Erst mit erreichbarem Roller weiterarbeiten. Seriennummer, VIN und Akkunummer wurden anonymisiert.
+1. Kontrolliere die aktive Quelle, gewählte Region, richtigen Roller und die tatsächliche Bluetooth-Verbindung. Schließe andere Verbindungen zum Roller.
+2. Öffne die Fahrzeug-Firmwareseite nach der Aktivierung neu.
+3. Prüfe, ob die gewünschte Zielversion bereits installiert ist; ein erneuter Flash wäre dann normalerweise unnötig.
+4. Ein erfolgreicher interner Test beweist weder Bluetooth-Kompatibilität noch ein tatsächlich angezeigtes Angebot. Dokumentiere Android-Version, Release, Ausgangsversion, Region und genaue Meldung. Veröffentliche keine Zugangsdaten, Bluetooth-Schlüssel, Seriennummern oder VIN.
+5. Ändere keine Versionsnummern oder Zeitstempel, um ein Angebot zu erzwingen. Eine universelle Umgehung für ausbleibende Angebote ist nicht nachgewiesen.
 
-## 8. Die Übertragung starten und abwarten
+### Fehler während Download oder Übertragung
 
-1. Lies alle Hinweise der App. Wenn sie eine nicht erfüllte Bedingung meldet, erfülle sie vor dem Start.
-2. Tippe auf der Seite **Firmwareaktualisierung** auf **Jetzt aktualisieren / Update now**.
-3. Falls ein zusätzlicher Bestätigungsdialog erscheint, prüfe ihn und bestätige erst dann. Ab dem Start des Update-Ablaufs musst du von einer möglichen Übertragung ausgehen.
-4. Die App kann zuerst einen Download und anschließend das Schreiben der Firmware anzeigen. **„Heruntergeladen“ allein ist noch kein erfolgreiches Fahrzeugupdate.**
-5. Lass NIU Patch im Vordergrund auf dieser Seite. Bildschirm nicht sperren, nicht zur Original-App wechseln, Bluetooth und Internet nicht abschalten und keine App-Daten löschen.
-6. Bleibe mit dem Handy direkt beim Roller. Betätige währenddessen keine Fahrzeugbedienelemente und schalte den Roller nicht von Hand aus. Ein von der App bzw. dem Controller ausgelöster Neustart ist davon zu unterscheiden.
-7. Warte auf die ausdrückliche Erfolgsmeldung, beispielsweise **Firmware-Upgrade erfolgreich**. Die App enthält auch die Meldung **Firmware nicht aktualisiert** für einen Fehlschlag. Ein voller Fortschrittsbalken allein ersetzt die Erfolgsmeldung nicht.
-8. Folge einer anschließend ausdrücklich angezeigten Aufforderung zum Neustart oder Wiederverbinden. Keine eigene erzwungene Neustartfolge während einer noch laufenden Übertragung durchführen.
-
-Eine feste Übertragungsdauer wurde für diese APK am KQi 300X hier nicht gemessen. Die App zeigt eine Schätzung an. Es gibt deshalb in dieser Anleitung keine erfundene Regel wie „nach fünf Minuten ausschalten“.
-
-## 9. Nach dem Update überprüfen und die manuelle Quelle entfernen
-
-1. Warte, bis die App den Vorgang beendet hat, und verbinde dich gegebenenfalls erneut.
-2. Öffne die Versionsübersicht unter **Verwalten → Firmwareaktualisierung** erneut und notiere die angezeigte Motorcontroller-Version. Vergleiche mit vorher und mit deiner Zielregion. Eine noch zwischengespeicherte Anzeige ist kein unabhängiger Auslesebeweis.
-3. Entferne jetzt die manuelle Update-Einstellung: **Ich / Me / Account → Einstellungen → Über → Niu Manual Update** öffnen, das Link-Feld **vollständig leeren** und **Update** drücken.
-4. Die Meldung **You must provide a link to a json file** ist bei diesem bewussten Entfernen **erwartet**. Der APK-Code löscht bei leerer Eingabe den gespeicherten Link. Beim erstmaligen Eintragen wäre dieselbe Meldung ein Fehler.
-5. Tippe **Back to main app** und schließe NIU Patch. Das Entfernen des Links setzt die Roller-Firmware **nicht** zurück. Es beendet die Verwendung der manuell gewählten Update-Quelle in der App.
-6. Für die normale Verwendung darfst du nun die originale NIU-App öffnen und wieder verbinden. Ein in dieser App angebotenes **Fahrzeug-Firmwareupdate** ist eine weitere Änderung am Roller; prüfe es, bevor du es installierst. Ein Android-Update der Original-App ist davon unabhängig und ersetzt die parallel installierte Patch-App nicht.
-7. Prüfe im Stand zunächst Fehleranzeige, Bremsen und Licht. Stelle einen benutzerdefinierten Geschwindigkeitswert, falls vorhanden, zunächst niedrig ein. Ein Wechsel auf US-Firmware ist kein Grund, die erste Fahrt sofort mit maximaler Geschwindigkeit zu beginnen.
-8. Wenn du später die Geschwindigkeit prüfst, verwende einen geeigneten abgesperrten Bereich ohne öffentlichen Verkehr. Beachte Fahrmodus und eventuell eingestelltes Custom-Limit. **32 km/h und 38 km/h sind unterschiedliche Werte; eine ältere App-Anzeige allein bestimmt nicht die Grenze im Motorcontroller.**
-
-**Abschlusskontrolle:** Erfolgsmeldung erhalten, Versionsanzeige dokumentiert, manuelle Quelle entfernt und normale Verbindung wiederhergestellt. Bei Warnungen oder Fehlverhalten keine Probefahrt durchführen.
-
-<img src="assets/niu-patch/07-clear-source.png" width="432" alt="Manual-Update-Seite zum Entfernen der manuellen Quelle: 11 markiert das zu leerende Eingabefeld, 12 Update und 13 Back to main app.">
-
-**Bild 9 — Erst nach Abschluss die manuelle Quelle entfernen: 11 → 12 → 13.** **11:** ins Feld tippen, vorhandenen Text vollständig auswählen und löschen. Ein grauer Beispieltext wie `http://.../kqi3_pro_US.json` ist nur der Platzhalter eines leeren Felds. **12:** **Update** drücken. Die Meldung **You must provide a link to a json file** ist bei diesem bewussten Entfernen erwartet. **13:** **Back to main app** antippen. Diese Bildfolge beschreibt keine Rückkehr zur DE-Firmware.
-
-## 10. Fehlerhilfe: Erst lesen, dann handeln
-
-### Die APK lässt sich nicht installieren
-
-- Prüfe, ob es wirklich die APK aus dem verlinkten Release und ein Android-Gerät ist.
-- Lade die Datei bei unvollständigem Download erneut herunter. Prüfe verfügbaren Telefonspeicher und die Erlaubnis für den verwendeten Dateimanager/Browser.
-- Bei **App wurde nicht installiert**, einem Paketkonflikt oder einer Signaturmeldung: genaue Meldung notieren. Eine andere bereits installierte App mit `com.niu.lxckb9p`, aber anderem Schlüssel lässt sich nicht durch dieses Release aktualisieren. Nicht vorschnell die Original-App oder eine vorhandene Patch-App mit wichtigen lokalen Daten löschen.
-- Meldet Android eine Richtlinien- oder Sicherheitsblockade, nicht pauschal Geräteschutz abschalten. Die Paket- und Signaturdaten stehen in den [Release-Details](niu-patch.md).
-
-### Unter Über erscheint kein Niu Manual Update
-
-1. Kontrolliere, dass **NIU Patch** geöffnet ist.
-2. Öffne die **App-Einstellungen im Profil**, nicht die allgemeinen Android-Einstellungen und nicht die Fahrzeug-Firmwareseite.
-3. Öffne dort **Über / About**. Die Original-App besitzt diese Zusatzseite nicht.
-
-### Die Anmeldung in NIU Patch scheitert
-
-1. Prüfe Internet, Kontodaten, Anmelderegion und gegebenenfalls den empfangenen Bestätigungscode. Verwende das bestehende Konto des Rollers.
-2. Falls du eine bisherige NIU Parallel/Patch mit schon gespeicherter manueller Quelle verwendest und die Einstellungsseite noch erreichst: Link-Feld unter **Einstellungen → Über** vollständig leeren und **Update** drücken. Danach die Anmeldung erneut versuchen. Die manuelle Quelle beeinflusst auch einen HTTP-Helfer der App; dies ist eine begründete Prüfung, keine garantierte Lösung für jeden Anmeldefehler.
-3. Wenn die Original-App funktioniert, die Patch-App aber nicht, dokumentiere deren genaue Meldung. Die Patch-App basiert auf einer älteren NIU-Version; aktuelle Serverkompatibilität wurde hier nicht nachgewiesen. Nicht als vermeintliche Reparatur das Konto löschen oder den Roller entbinden.
-
-### Bluetooth verbindet sich nicht
-
-1. Keine laufende Firmwareübertragung unterbrechen. Diese Schritte gelten vor dem Start oder nach einem ausdrücklich beendeten Fehlversuch.
-2. Original-App sowie andere aktive Handy-Verbindungen schließen.
-3. Roller einschalten, Handy danebenlegen, Bluetooth einschalten und Patch-App-Berechtigungen überprüfen.
-4. Falls Android es für die Suche verlangt, Standort einschalten und die entsprechende Berechtigung erteilen.
-5. NIU Patch erneut öffnen und den bereits gebundenen Roller auswählen. Nur wenn kein Update läuft, darfst du für einen normalen neuen Verbindungsversuch App bzw. Roller neu starten.
-6. Bei weiterhin fehlender Verbindung anhalten. Nicht als Standardlösung Konto löschen, Fahrzeug entbinden oder fremde Firmware ausprobieren.
-
-### Der Link wird bestätigt, aber es erscheint kein Update
-
-Arbeite diese Reihenfolge ab. Vor dem Datenlöschen nicht direkt zu Punkt 7 springen.
-
-1. Prüfe, ob du **NIU Patch** verwendest und die Bluetooth-Verbindung aktiv ist.
-2. Vergleiche die vollständige Adresse mit Abschnitt 5. Es muss die **Raw-JSON-Adresse** sein, keine GitHub-`blob`-Seite und keine BIN-Adresse.
-3. Öffne dieselbe Adresse testweise im Handy-Browser. Erwartet wird JSON-Text bzw. eine JSON-Datei mit `data`, `items`, `devicetype` und `FOC`, keine 404-Seite und keine GitHub-Dateiansicht. Manche Browser laden die JSON herunter; öffne sie dann als Text. Veröffentliche dabei keine persönlichen Fahrzeugdaten.
-4. Füge den Link in der Patch-App erneut ein, drücke **Update**, prüfe die eingeblendete Adresse und öffne anschließend die Fahrzeug-Firmwareaktualisierung neu.
-5. Wenn die Adresse nicht erreichbar ist, prüfe deine Internetverbindung. Ein Versuch mit mobilen Daten statt WLAN ist eine mögliche Verbindungsprüfung, kein nachgewiesener Schutzmechanismus gegen eine Firmware-Sperre. Netzwerkwechsel nur vor einer Übertragung.
-6. Prüfe, ob genau diese Zielversion bereits installiert ist. Falls ja, ist ein erneuter Flash normalerweise unnötig. Eine Meldung „neueste Firmware“ allein beweist das aber nicht.
-7. Erst wenn du diese Version schon einmal **erfolgreich mit dieser App** eingespielt hast, kommt ein gespeicherter Versionsstand als Ursache infrage: Der Code kann ein Angebot ausblenden, dessen Version mit dem lokalen Eintrag für denselben Roller und dasselbe Bauteil übereinstimmt. Die App-Daten kannst du als letzten Versuch gemäß dem folgenden Unterabschnitt zurücksetzen.
-8. Wenn das Problem schon beim ersten Versuch besteht oder nach den Prüfungen bleibt: Ausgangsversionen, Android-Version, Patch-Release, gewählte Region und genaue Meldung dokumentieren. Bei manchen Kombinationen wird kein Update angeboten; eine universell funktionierende Umgehung ist hier nicht nachgewiesen. **Keine Fantasie-Versionsnummern oder Zeitstempel eintragen.**
-
-### Letzter Versuch bei bekanntem Versionsspeicher: Nur Patch-App-Daten löschen
-
-**Dabei gehen Anmeldung, gespeicherter Link und lokale Daten von NIU Patch verloren.** Die getrennten lokalen Daten der Original-App werden dadurch nicht gelöscht. Dies ist kein Entbinden des Fahrzeugs vom Konto und kein Zurücksetzen der Roller-Firmware.
-
-1. Vergewissere dich, dass kein Update läuft.
-2. Sichere die Bluetooth-Schlüssel wie in Abschnitt 4. Prüfe die dauerhaft gespeicherte Kopie und deine Möglichkeit zur erneuten Anmeldung.
-3. Öffne **Android-Einstellungen → Apps → NIU Patch → Speicher / Speicher und Cache**.
-4. Kontrolliere nochmals den Namen **NIU Patch**.
-5. Wähle **Daten löschen / Speicherinhalt löschen** und bestätige den Datenverlust. **Cache leeren allein** entfernt die gespeicherten Einstellungen nicht zuverlässig.
-6. Starte NIU Patch, melde dich mit dem bisherigen Konto an und verbinde deinen vorhandenen Roller erneut.
-7. Trage die gewünschte JSON-Adresse nach Abschnitt 6 neu ein; auch sie wurde gelöscht.
-8. Prüfe das Update-Angebot erneut. Wenn es weiter fehlt, anhalten. Wiederholtes Datenlöschen löst keine unbekannte Inkompatibilität.
-
-### Download oder Übertragung meldet einen Fehler
-
-1. Lies und dokumentiere die genaue Fehlermeldung sowie den letzten sichtbaren Fortschritt. Unterscheide **Download fehlgeschlagen** von einem Fehler beim Schreiben auf den Roller.
-2. Zeigt die App ausdrücklich einen beendeten Fehler und bietet Wiederverbinden/Wiederholen an, folge dieser Aufforderung mit stabiler Verbindung und ausreichenden Akkus. Vor einem erneuten Start das richtige FOC-Angebot kontrollieren.
-3. Solange die App noch aktualisiert oder der Zustand unklar ist, nicht eigenmächtig Roller ausschalten, App beenden oder andere Firmware nachschieben. Eine feste sichere Wartefrist ist für diesen Fall hier nicht bekannt.
-4. Ist der Roller danach nicht mehr erreichbar oder zeigt dauerhaft Fehler, keine blinden Flashversuche. Dokumentiere den Zustand und lasse die Wiederherstellung am konkreten Gerät klären.
+Lies die genaue Meldung und unterscheide einen Downloadfehler von einem Fehler beim Schreiben auf den Roller. Folge einer ausdrücklichen Aufforderung zum Wiederverbinden oder Wiederholen nur nach beendetem Versuch. Solange der Updatezustand unklar ist, nicht eigenmächtig ausschalten, Appdaten löschen oder eine andere Firmware nachschieben. Eine Wiederherstellung eines nicht mehr erreichbaren Controllers wurde mit diesem Release nicht geprüft.
 
 ### Zurück zur DE-Version
 
-Die **DE-JSON** aus Abschnitt 5 ist der vorhandene Update-Einstieg für `KBE38D05`. Ein Rückwechsel wäre **ein neuer vollständiger Firmware-Flash** mit denselben Prüfungen und Risiken. Er ist für jede aktuelle Hardware-/Versionskombination nicht garantiert. Die APK löschen, den manuellen Link entfernen oder die Original-App öffnen setzt die Firmware nicht zurück. Ebenso ist das Einspielen dieser DE-Datei kein nachgewiesenes vollständiges Wiederherstellen aller werkseitigen oder zulassungsrelevanten Zustände.
+Das Deaktivieren der Quelle, das Löschen der APK oder das Öffnen der originalen NIU-App setzt die Roller-Firmware nicht zurück. Ein Wechsel zur DE-Datei wäre ein neuer vollständiger Firmware-Flash mit denselben Prüfungen; ein erfolgreicher Rückwechsel und ein vollständig wiederhergestellter Werkszustand sind nicht für jede Kombination nachgewiesen.
 
-## Quellen und Nachweise
+## Nachweise und ältere Anleitung
 
-[Abgleich der gefundenen Anleitungen und APK-Prüfung](niu-patch-quellen.md) · [APK und Signaturdetails](niu-patch.md) · [DE-/US-Begrenzung](speed-limits.md) · [EU-Vergleich](eu-speed-limits.md)
+[Release und Prüfsummen](https://github.com/mojomedia1812/KQi-300-X-P-Firmware/releases/tag/niu-patch-v5.12.2-r1) · [APK-Details](niu-patch.md) · [Öffentlicher Prüfbericht](../apps/niu-patch/verification-5.12.2-r1.json) · [Quellen und Versionsabgrenzung](niu-patch-quellen.md) · [Archiv: bebilderte Anleitung 4.8.12](niu-patch-anleitung-4.8.12.md)

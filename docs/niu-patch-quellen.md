@@ -2,7 +2,22 @@
 
 Recherche- und Prüfstand: **25. November 2026**. Diese Übersicht dokumentiert die öffentlich gefundenen, zugänglichen Anleitungen und deren Abgleich mit der vorhandenen APK. Sie behauptet keine vollständige Erfassung des Internets oder privater Discord-/Telegram-Inhalte.
 
-Die daraus erstellte [Schritt-für-Schritt-Anleitung](niu-patch-anleitung.md) verwendet ausschließlich die APK- und Firmware-Downloads dieses Repositorys. Externe Links auf dieser Seite sind **Quellenbelege**, keine alternativen Download-Empfehlungen.
+Die daraus erstellte [archivierte Schritt-für-Schritt-Anleitung für 4.8.12](niu-patch-anleitung-4.8.12.md) verwendet ausschließlich die APK- und Firmware-Downloads dieses Repositorys. Externe Links auf dieser Seite sind **Quellenbelege**, keine alternativen Download-Empfehlungen.
+
+## Aktuelles Release 5.12.2: eigener Prüfstand
+
+Die **[aktuelle Anleitung](niu-patch-anleitung.md)** gilt für [NIU Patch 5.12.2 r1](https://github.com/mojomedia1812/KQi-300-X-P-Firmware/releases/tag/niu-patch-v5.12.2-r1). Die nachfolgenden externen Quellen und die alte Smali-Tabelle dokumentieren die ursprüngliche Recherche für **4.8.12**, nicht eine erneute Prüfung sämtlicher Quellen mit 5.12.2. Die [Bildfolge](assets/niu-patch/README.md) zeigt ebenfalls 4.8.12.
+
+Für 5.12.2 wurde der neue Menü- und Injektionscode geprüft und auf dem Samsung SM-N981B unter Android 13 getestet:
+
+- **Identität und Update:** `com.niu.lxckb9p`, sichtbarer Name NIU Patch, gleiche Signatur wie zuvor, Versionscode `51051202`. Als Update über 4.8.12 installiert; bisherige Appdaten und Anmeldung blieben erhalten. Original-NIU blieb parallel installiert.
+- **Einstieg:** Der Über-Eintrag der `SettingsActivity` führt zu `niu.patch.v5.ManualUpdateActivity`; der Nutzer bestätigte den Menüweg in der neuen Basis-App. Nach dem Wechsel auf die bisherige Paketkennung wurde das Menü erneut geöffnet.
+- **Quellenprüfung:** `ManualUpdateActivity` / `OtaRules` prüfen die vorgesehenen DE-/EU-/US-JSONs und die BIN-Größe sowie MD5. US wurde zusätzlich am Handy heruntergeladen und geprüft. Die Auswahl oder Bearbeitung des Links deaktiviert eine vorherige Quelle.
+- **Injektion:** `PatchHooks.beforePost` erfasst die unverschlüsselte OTA-Anfrage vor der ursprünglichen Verarbeitung. Nur eine passende NIU-`/v5/ota/checkupdate`-Anfrage mit erkannter KBE-FOC-Version erhält über `CachedCall` die geprüfte Antwort. Die Anfrage an das Repository enthält keine NIU-Anmeldeheader oder echte OTA-Anfragedaten. Die Firmwarefamilie allein beweist kein physisches Modell.
+- **Kontrollen:** 51 Host-Prüfungen bestanden; 302 Methoden-/Feldreferenzen aufgelöst; alle sieben DEX-Prüfsummen und 31 unveränderte native Bibliotheken geprüft. Der interne Gerätetest akzeptierte die vorbereitete FOC-Antwort mit dem tatsächlich enthaltenen NIU-Parser. Es war eine synthetische Anfrage, kein Fahrzeugupdate.
+- **Geänderte Bedienung:** **Quelle prüfen und aktivieren** und **Manuelle Quelle deaktivieren** ersetzen den alten Speichern-/Leeren-Ablauf. Die BT-Secrets-Kopierfunktion wurde nicht übernommen. Nach dem Test wurde die manuelle Quelle deaktiviert.
+
+**Offen:** Kein Bluetooth-Test, kein am verbundenen Roller beobachtetes Update-Angebot und kein Flash mit diesem Release. Der vorgesehene Fahrzeugablauf ist daher in der Anleitung als ungetestet gekennzeichnet. [Öffentlicher Prüfbericht](../apps/niu-patch/verification-5.12.2-r1.json).
 
 ## Veröffentlichte Anleitungen und ihre Grenzen
 
@@ -27,7 +42,7 @@ Geschlossene Community-Kanäle wurden nicht betreten. Die Nachfolge-Webseite des
 
 ## Eigene Prüfung an der APK
 
-Prüfobjekt ist das [Release niu-patch-v4.8.12-r1](https://github.com/mojomedia1812/KQi-300-X-P-Firmware/releases/tag/niu-patch-v4.8.12-r1). Die [Release-Identität](niu-patch.md) und [Metadaten](../apps/niu-patch/release.json) nennen Hash, Paket und Signatur. Die Basis-APK wurde mit Apktool 3.0.3 in Ressourcen und Smali zerlegt. Die relevanten Programmteile wurden gelesen; sie wurden für diese Recherche nicht verändert. Die angepasste Paketkennung und Manifest-Umbenennung ändern die hier untersuchten Schaltflächen und Methoden nicht.
+Prüfobjekt ist das [Release niu-patch-v4.8.12-r1](https://github.com/mojomedia1812/KQi-300-X-P-Firmware/releases/tag/niu-patch-v4.8.12-r1). Die damaligen Release-Assets nennen den historischen Hash, das Paket und die Signatur. Die aktuellen [Release-Daten](../apps/niu-patch/release.json) beschreiben dagegen 5.12.2. Die Basis-APK wurde mit Apktool 3.0.3 in Ressourcen und Smali zerlegt. Die relevanten Programmteile wurden gelesen; sie wurden für diese Recherche nicht verändert. Die angepasste Paketkennung und Manifest-Umbenennung ändern die hier untersuchten Schaltflächen und Methoden nicht.
 
 | Nachweisstelle | Festgestelltes Verhalten | Bedeutung |
 |---|---|---|
@@ -50,7 +65,7 @@ Die Hinweise zur Nähe des Handys, ungestörtem Ablauf, Ladezustandsreserve, dem
 
 Nach der ursprünglichen Recherche wurde das Samsung SM-N981B mit Android 13 erneut angeschlossen. Die veröffentlichte NIU Patch r1 wurde über die vorherige Parallel-App installiert; die vorhandene Anmeldung blieb dabei erhalten. Der SHA-256-Wert der auf dem Handy installierten APK entspricht dem Release. Die Anmeldung, Profil-/Einstellungsseite, Manual-Update-Seite und Fahrzeugverwaltung wurden geöffnet und aufgenommen. Die Original-App blieb installiert. **Das ist ein zusätzlicher Gerätetest der umbenannten APK**, kein vollständiger Flash-Test.
 
-Die [bebilderte Anleitung](niu-patch-anleitung.md) und die [Bildherkunft](assets/niu-patch/README.md) dokumentieren den Ablauf. Am Gerät war der intern gesetzte Titel **Niu Manual Update** nicht als Überschrift sichtbar; diese frühere Formulierung wurde korrigiert. Der direkte Weg **Ich → Mein Gerät → vorhandener Roller → Verwalten → Firmwareaktualisierung** wurde geprüft. Ohne erreichbaren Roller verhinderte die Bluetooth-Abfrage den Wechsel zur eigentlichen Firmwareseite.
+Die [archivierte bebilderte Anleitung](niu-patch-anleitung-4.8.12.md) und die [Bildherkunft](assets/niu-patch/README.md) dokumentieren den Ablauf. Am Gerät war der intern gesetzte Titel **Niu Manual Update** nicht als Überschrift sichtbar; diese frühere Formulierung wurde korrigiert. Der direkte Weg **Ich → Mein Gerät → vorhandener Roller → Verwalten → Firmwareaktualisierung** wurde geprüft. Ohne erreichbaren Roller verhinderte die Bluetooth-Abfrage den Wechsel zur eigentlichen Firmwareseite.
 
 ### Weiterhin offen
 
