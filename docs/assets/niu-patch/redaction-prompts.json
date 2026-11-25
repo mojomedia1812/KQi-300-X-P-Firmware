@@ -1,0 +1,16 @@
+{
+  "tool": "built-in image_gen.imagegen",
+  "purpose": "Privacy edits on two real device screenshots; no UI mockups were requested.",
+  "private_inputs_published": false,
+  "outputs_pixel_identical_outside_requested_regions": false,
+  "prompts": [
+    {
+      "public_output": "screens/02-profile-anonymized.png",
+      "prompt": "Use case: precise-object-edit. This is a real Android NIU Patch screenshot, not a UI mockup. Make exactly one privacy edit: cover the username text directly below the round avatar (rectangle x=405..675, y=490..570 in this 1080x2400 screenshot) with a solid opaque neutral black rectangular redaction bar. Do NOT replace it with an invented username. Preserve the full original 1080x2400 framing, every other pixel, all existing German and English texts, layout, buttons, icons, colors and positions. Do NOT draw annotations, numbers, arrows, new interface elements or explanatory text. Do not redraw/reinterpret the UI; only redact that one username."
+    },
+    {
+      "public_output": "screens/06-manage-anonymized.png",
+      "prompt": "Use case: precise-object-edit. This is a real Android NIU Patch screenshot, not a UI mockup. Make only privacy edits: cover the personal identifier VALUES in the three rows labelled S/N, VIN and Akku-Nr. with solid opaque black rectangular redaction bars. Their value regions in the original 1080x2400 screenshot are x=505..1005,y=1545..1615; x=505..1005,y=1673..1743; x=505..1005,y=1798..1870. Keep the left labels visible. Do NOT replace identifiers with invented identifiers. Preserve the full original framing and all other pixels, every other German/English text, especially the exact Firmwareaktualisierung row near y=585, all icons, positions, colors, and the real disconnected Bluetooth banner. Do NOT add annotations, arrows, numbers, explanatory text, or invented update offers. Do not redraw the UI; redact only those three identifier values."
+    }
+  ]
+}

@@ -1,0 +1,84 @@
+{
+  "capture_date": "2026-11-25",
+  "app_release": "niu-patch-v4.8.12-r1",
+  "apk_sha256": "c2fcef9bd1d2b23cf47e9213cefc907b760f94266b49c39d3a3b574aa32471b2",
+  "package": "com.niu.lxckb9p",
+  "device_model": "Samsung SM-N981B",
+  "android_version": "13",
+  "capture_size": [
+    1080,
+    2400
+  ],
+  "language": "Deutsch; some English fallback labels",
+  "theme": "dark",
+  "account_signed_in": true,
+  "scooter_connected": false,
+  "firmware_transfer_started": false,
+  "manual_link_saved_during_capture": false,
+  "private_identifiers_published": false,
+  "screenshots": {
+    "00-app-info.png": {
+      "sha256": "5928a217cbea39a819df6c7b1816230356aab2ab3e588b86fd604ffcc5dba07b",
+      "dimensions": [
+        1080,
+        2400
+      ],
+      "privacy_edit": null,
+      "pixel_identical_to_device_capture": true
+    },
+    "01-home.png": {
+      "sha256": "32117446b57645908ea87036928654d2fa69da6d205fea3da45772c133fe16d9",
+      "dimensions": [
+        1080,
+        2400
+      ],
+      "privacy_edit": null,
+      "pixel_identical_to_device_capture": true
+    },
+    "02-profile-anonymized.png": {
+      "sha256": "7b409e1489309ed76fe7fa82eda944aec4229e02100baff68123ebb118497147",
+      "dimensions": [
+        819,
+        1920
+      ],
+      "privacy_edit": "imagegen_redaction",
+      "pixel_identical_to_device_capture": false
+    },
+    "03-settings.png": {
+      "sha256": "6d6fc45974aad034bc0abedf46e07d57af5d5e960bccd2aa092b1d33abac4803",
+      "dimensions": [
+        1080,
+        2400
+      ],
+      "privacy_edit": null,
+      "pixel_identical_to_device_capture": true
+    },
+    "04-manual.png": {
+      "sha256": "bbba788d3ac079fd6f56901be035b0ea92f7e04e50dc0f47be57ec55c0e7082b",
+      "dimensions": [
+        1080,
+        2400
+      ],
+      "privacy_edit": null,
+      "pixel_identical_to_device_capture": true
+    },
+    "05-link.png": {
+      "sha256": "a16c7990dd264ce9254826418efdd221e832774fd1892b8823c09fbce022f5b5",
+      "dimensions": [
+        1080,
+        2400
+      ],
+      "privacy_edit": null,
+      "pixel_identical_to_device_capture": true
+    },
+    "06-manage-anonymized.png": {
+      "sha256": "a452be7e6ee4fa2fd9abbd3d2833eeed137a4f19d86a1a9639ac3d024328d519",
+      "dimensions": [
+        842,
+        1869
+      ],
+      "privacy_edit": "imagegen_redaction",
+      "pixel_identical_to_device_capture": false
+    }
+  }
+}

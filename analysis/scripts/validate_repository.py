@@ -40,7 +40,7 @@ def main():
             continue
         text = path.read_text(encoding='utf-8')
         assert not re.search(r'[A-Za-z]:[\\/](?:Users|_codex)[\\/]', text), path
-        for target in re.findall(r'(?<!!)\[[^\]]+\]\(([^\s)]+)\)', text):
+        for target in re.findall(r'\[[^\]]+\]\(([^\s)]+)\)', text):
             url = urlsplit(target)
             if url.netloc == 'github.com':
                 reviewed_source = (path == ROOT / 'docs/niu-patch-quellen.md'

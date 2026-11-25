@@ -46,7 +46,15 @@ Die Hinweise zur Nähe des Handys, ungestörtem Ablauf, Ladezustandsreserve, dem
 
 ## Was damit nicht nachgewiesen ist
 
-- Kein vollständiger Flash-Test dieser umbenannten APK am KQi 300X; bei der Recherche war kein Android-Gerät über ADB verbunden.
+### Ergänzung durch Geräteaufnahmen am 25. November 2026
+
+Nach der ursprünglichen Recherche wurde das Samsung SM-N981B mit Android 13 erneut angeschlossen. Die veröffentlichte NIU Patch r1 wurde über die vorherige Parallel-App installiert; die vorhandene Anmeldung blieb dabei erhalten. Der SHA-256-Wert der auf dem Handy installierten APK entspricht dem Release. Die Anmeldung, Profil-/Einstellungsseite, Manual-Update-Seite und Fahrzeugverwaltung wurden geöffnet und aufgenommen. Die Original-App blieb installiert. **Das ist ein zusätzlicher Gerätetest der umbenannten APK**, kein vollständiger Flash-Test.
+
+Die [bebilderte Anleitung](niu-patch-anleitung.md) und die [Bildherkunft](assets/niu-patch/README.md) dokumentieren den Ablauf. Am Gerät war der intern gesetzte Titel **Niu Manual Update** nicht als Überschrift sichtbar; diese frühere Formulierung wurde korrigiert. Der direkte Weg **Ich → Mein Gerät → vorhandener Roller → Verwalten → Firmwareaktualisierung** wurde geprüft. Ohne erreichbaren Roller verhinderte die Bluetooth-Abfrage den Wechsel zur eigentlichen Firmwareseite.
+
+### Weiterhin offen
+
+- Kein vollständiger Flash-Test dieser umbenannten APK am KQi 300X. Bei der ursprünglichen Recherche war kein Android-Gerät über ADB verbunden; bei den späteren Aufnahmen war das Handy verbunden, der Roller jedoch nicht erreichbar.
 - Keine Garantie für aktuelle NIU-Serveranmeldung, jede Android-Version, jeden Hardwarestand oder jede bereits installierte Firmware.
 - Keine universelle Lösung für ausbleibende Angebote, Kontosperren oder einen unterbrochenen Flash.
 - Kein vollständiger Rückweg durch Einspielen der DE-Datei und kein Nachweis eines dadurch vollständig wiederhergestellten Werkszustands.
