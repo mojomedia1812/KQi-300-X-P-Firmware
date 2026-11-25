@@ -8,7 +8,7 @@ ROOT = Path(__file__).resolve().parents[1]
 def main():
     decoder = Cs(CS_ARCH_ARM, CS_MODE_THUMB | CS_MODE_MCLASS)
     decoder.skipdata = True
-    for region in ('US', 'DE'):
+    for region in ('US', 'DE', 'EU'):
         data = (ROOT / 'generated' / f'{region}_normalized.analysis.dat').read_bytes()
         lines = [f'0x{address:08X} | file 0x{address-0x01000000+0x400:06X} | {mnemonic:10s} {operands}'.rstrip()
                  for address, size, mnemonic, operands in decoder.disasm_lite(data[0xc0:], 0x010000c0)]

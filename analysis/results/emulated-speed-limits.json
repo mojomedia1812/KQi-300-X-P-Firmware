@@ -196,6 +196,118 @@
           "telemetry_at_custom_request": 213
         }
       ]
+    },
+    "EU": {
+      "sport_sweep": [
+        {
+          "adc": 1023,
+          "speed_request_internal": 0
+        },
+        {
+          "adc": 1500,
+          "speed_request_internal": 1299
+        },
+        {
+          "adc": 2000,
+          "speed_request_internal": 2576
+        },
+        {
+          "adc": 2620,
+          "speed_request_internal": 4160
+        },
+        {
+          "adc": 3000,
+          "speed_request_internal": 4160
+        }
+      ],
+      "pi_call": [
+        {
+          "routine": "0x1005158",
+          "argument_r0": 4160,
+          "drive_command_internal": 4160
+        }
+      ],
+      "sport_pi_command_verified": true,
+      "sport_telemetry_deci_kmh": 254,
+      "custom_parameter_sweep": [
+        {
+          "input_deci_kmh": 50,
+          "stored_after_regional_scaling": 50,
+          "converted_parameter": 503,
+          "custom_speed_request_internal": 864,
+          "telemetry_at_custom_request": 52
+        },
+        {
+          "input_deci_kmh": 100,
+          "stored_after_regional_scaling": 100,
+          "converted_parameter": 1032,
+          "custom_speed_request_internal": 1689,
+          "telemetry_at_custom_request": 103
+        },
+        {
+          "input_deci_kmh": 200,
+          "stored_after_regional_scaling": 200,
+          "converted_parameter": 2088,
+          "custom_speed_request_internal": 3336,
+          "telemetry_at_custom_request": 204
+        },
+        {
+          "input_deci_kmh": 210,
+          "stored_after_regional_scaling": 210,
+          "converted_parameter": 2191,
+          "custom_speed_request_internal": 3497,
+          "telemetry_at_custom_request": 213
+        },
+        {
+          "input_deci_kmh": 249,
+          "stored_after_regional_scaling": 249,
+          "converted_parameter": 2509,
+          "custom_speed_request_internal": 3992,
+          "telemetry_at_custom_request": 244
+        },
+        {
+          "input_deci_kmh": 250,
+          "stored_after_regional_scaling": 250,
+          "converted_parameter": 2617,
+          "custom_speed_request_internal": 4160,
+          "telemetry_at_custom_request": 254
+        },
+        {
+          "input_deci_kmh": 251,
+          "stored_after_regional_scaling": 250,
+          "converted_parameter": 2617,
+          "custom_speed_request_internal": 4160,
+          "telemetry_at_custom_request": 254
+        },
+        {
+          "input_deci_kmh": 320,
+          "stored_after_regional_scaling": 250,
+          "converted_parameter": 2617,
+          "custom_speed_request_internal": 4160,
+          "telemetry_at_custom_request": 254
+        },
+        {
+          "input_deci_kmh": 380,
+          "stored_after_regional_scaling": 250,
+          "converted_parameter": 2617,
+          "custom_speed_request_internal": 4160,
+          "telemetry_at_custom_request": 254
+        },
+        {
+          "input_deci_kmh": 500,
+          "stored_after_regional_scaling": 250,
+          "converted_parameter": 2617,
+          "custom_speed_request_internal": 4160,
+          "telemetry_at_custom_request": 254
+        },
+        {
+          "input_deci_kmh": 9999,
+          "stored_after_regional_scaling": 250,
+          "converted_parameter": 2617,
+          "custom_speed_request_internal": 4160,
+          "telemetry_at_custom_request": 254
+        }
+      ]
     }
   }
 }

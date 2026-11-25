@@ -29,13 +29,13 @@ Maschinenlesbare Herkunft, Toolversionen und Prüfsummen: [analysis/manifest.jso
 | Aussage | Grundlage |
 |---|---|
 | Dateigrößen, Hashes, Rohunterschiede, Kennungen | Direkte Dateianalyse |
-| Additive Normalisierung der US- und DE-Nutzdaten | Konsistente Vektortabelle, Thumb-Code, Versionsstrings und exakter Rückweg zu den Originalbytes |
-| Begrenzung auf interne Sollwerte 6288 US und 3560 DE | Codefluss und Originalbefehle im Emulator |
+| Additive Normalisierung der DE-, EU- und US-Nutzdaten | Konsistente Vektortabelle, Thumb-Code, Versionsstrings und exakter Rückweg zu den Originalbytes |
+| Begrenzung auf interne Sollwerte 3560 DE, 4160 EU und 6288 US | Codefluss und Originalbefehle im Emulator |
 | Übergabe an den Geschwindigkeitsregler | Erfasste Argumente am Reglereintritt |
-| Ausgabewerte 384 US und 217 DE | Originale Ausgaberoutine mit synthetischem Istwert am jeweiligen Sollwert |
-| Interpretation als 38,4 und 21,7 km/h | Gemeinsame Parameterskala, nomineller US-Wert 380 und dazu passende Nutzerangaben |
+| Ausgabewerte 217 DE, 254 EU und 384 US | Originale Ausgaberoutine mit synthetischem Istwert am jeweiligen Sollwert |
+| Interpretation als 21,7 / 25,4 / 38,4 km/h | Gemeinsame Parameterskala, nominelle Grenzen und dazu passende DE-/US-Nutzerangaben |
 | Tatsächliche Fahrt mit etwa 38 US und 21 DE | Nutzerangabe ohne unabhängiges Messprotokoll |
-| EU 25 km/h | Historische README-Angabe; keine entsprechende Codeanalyse |
+| EU nominell 25,0 km/h, Ausgabe 25,4 km/h am Sollwert | Eigene EU-Codeanalyse und Originalbefehle im Emulator; kein unabhängiger EU-Fahrtest |
 | Tempomat und Halo-Tagfahrlicht | Frühere README-Angaben; für diese Dateien nicht vollständig durch Funktionstests verifiziert |
 | Einsatz auf KQi 300P | Nicht nachgewiesen; keine eigenständige 300P-Firmware im Bestand |
 

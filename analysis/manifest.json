@@ -47,14 +47,15 @@
   },
   "analysis_scope": [
     "US and DE binary comparison",
-    "US and DE speed-limit data flow",
-    "isolated original-instruction emulation",
+    "DE, EU and US additive normalization",
+    "DE, EU and US speed-limit data flow",
+    "isolated original-instruction emulation of all three regions",
     "all three regional descriptor hashes and URLs"
   ],
   "not_verified": [
-    "EU executable speed limits",
     "300P compatibility",
     "complete cruise-control and lighting behavior",
-    "all current, braking, thermal and fault limits"
+    "all current, braking, thermal and fault limits",
+    "independent EU road or GPS measurement"
   ]
 }

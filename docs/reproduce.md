@@ -28,20 +28,20 @@ python analysis/scripts/analyze.py
 python analysis/scripts/decode_compare.py
 python analysis/scripts/emulate_limits.py
 python analysis/scripts/export_disassembly.py
-git diff --exit-code -- analysis/results analysis/evidence/US/disassembly.txt analysis/evidence/DE/disassembly.txt
+git diff --exit-code -- analysis/results analysis/evidence
 ```
 
 | Schritt | Ergebnis |
 |---|---|
 | `validate_repository.py` | Größen, MD5, SHA-256, Git-Blob-Hashes, regionale Download-URLs und Dokumentationslinks |
-| `analyze.py` | Rohvergleich, Entropie, lesbare Zeichenfolgen, Differenzbereiche und vollständige Byte-CSV |
-| `decode_compare.py` | Additive Normalisierung, Versionsstrings, Vektortabelle, Rückwegprüfung und Sequenzausrichtung |
-| `emulate_limits.py` | Synthetischer Gasgriff-Sweep, regionale Custom-Grenzen, Reglerargumente und Geschwindigkeitsausgabe |
+| `analyze.py` | US-/DE-Rohvergleich, Entropie, lesbare Zeichenfolgen, Differenzbereiche und vollständige Byte-CSV |
+| `decode_compare.py` | DE-/EU-/US-Normalisierung, Versionsstrings, Vektortabelle, Rückwegprüfung sowie US-/DE-Sequenzausrichtung |
+| `emulate_limits.py` | Gasgriff-Sweep, Custom-Grenzen, Reglerargumente und Geschwindigkeitsausgabe aller drei Regionen; erzeugt auch den regionalen Vergleich |
 | `export_disassembly.py` | Vollständige lineare Thumb-Disassemblierung der normalisierten Nutzdaten |
 
 Berichte liegen unter [analysis/results](../analysis/results/), die Disassemblierungen unter [analysis/evidence](../analysis/evidence/). Die dekodierten Arbeitsdateien entstehen in `analysis/generated/`; sie sind Analysefassungen ohne Vorspann und keine installierbaren Update-Dateien.
 
-Die Emulation verwendet die Originalbefehle der normalisierten Firmware. ROM, RAM und benötigte Adressbereiche sind isoliert abgebildet. Am Reglereintritt wird der übergebene Sollwert protokolliert; die komplette elektromechanische Regelstrecke wird nicht simuliert. Die Testfälle prüfen insbesondere US 6288, DE 3560, die Ausgabewerte 384/217 und die abweichenden Custom-Ergebnisse 384/213.
+Die Emulation verwendet die Originalbefehle der normalisierten Firmware. ROM, RAM und benötigte Adressbereiche sind isoliert abgebildet. Am Reglereintritt wird der übergebene Sollwert protokolliert; die komplette elektromechanische Regelstrecke wird nicht simuliert. Die Testfälle prüfen insbesondere DE/EU/US 3560/4160/6288, die normalen Ausgabewerte 217/254/384 und die Custom-Ergebnisse 213/254/384. Die DE- und US-Testergebnisse bleiben durch die EU-Ergänzung unverändert.
 
 ## Ghidra Analyse erneut erzeugen
 
@@ -51,7 +51,7 @@ Beispiel für Bash, nachdem `decode_compare.py` ausgeführt wurde. `GHIDRA_HOME`
 
 ```sh
 mkdir -p analysis/ghidra-projects
-for region in US DE; do
+for region in US DE EU; do
   "$GHIDRA_HOME/support/analyzeHeadless" \
     "$PWD/analysis/ghidra-projects" "${region}_Firmware" \
     -import "$PWD/analysis/generated/${region}_normalized.analysis.dat" \
@@ -74,7 +74,7 @@ done
 
 Unter Windows heißt der Launcher `support/analyzeHeadless.bat`; die Argumente sind entsprechend als PowerShell-Argumente zu übergeben. Ein bestehendes Projekt kann beim zweiten Lauf mit `-process` erneut exportiert werden.
 
-Die vollständigen Exporte stehen bereits unter `analysis/evidence/US/` und `analysis/evidence/DE/`. Einzelne Funktionen liegen in `functions/`. C-Ausgaben sind Decompilate ohne originale Symbole, kein veröffentlichter Herstellerquellcode. Die lineare Capstone-Ausgabe enthält auch als Befehle interpretierte Datenbereiche; nicht jede Zeile ist ausführbarer Code.
+Die vollständigen Exporte stehen unter `analysis/evidence/DE/`, `analysis/evidence/EU/` und `analysis/evidence/US/`. Einzelne Funktionen liegen in `functions/`. C-Ausgaben sind Decompilate ohne originale Symbole, kein veröffentlichter Herstellerquellcode. Die lineare Capstone-Ausgabe enthält auch als Befehle interpretierte Datenbereiche; nicht jede Zeile ist ausführbarer Code.
 
 ## Kontinuierliche Prüfung
 

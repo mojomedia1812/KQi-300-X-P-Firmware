@@ -1,22 +1,22 @@
-# Vergleich der US und DE Firmware
+# Vergleich der regionalen Firmware
 
-Untersucht wurden `300X/US/KBE13M02.bin` und `300X/DE/KBE38M02.bin` aus dem Ausgangsstand [`dbe234e74df30c9ce4bdb943d7380210917987f5`](https://github.com/mojomedia1812/KQi-300-X-P-Firmware/commit/dbe234e74df30c9ce4bdb943d7380210917987f5). Beide besitzen eine gemeinsame Codebasis, aber unterschiedliche Kodierung, Programmabschnitte und regionale Parameter.
+Untersucht wurden `300X/US/KBE13M02.bin`, `300X/DE/KBE38M02.bin` und ergänzend `300X/EU/KBE01M02.bin` aus dem Ausgangsstand [`dbe234e74df30c9ce4bdb943d7380210917987f5`](https://github.com/mojomedia1812/KQi-300-X-P-Firmware/commit/dbe234e74df30c9ce4bdb943d7380210917987f5). Sie besitzen eine gemeinsame Codebasis, aber unterschiedliche Kodierung, Programmabschnitte und regionale Parameter. Der vollständige Byte-Sequenzvergleich unten betrifft US und DE; die EU-Ergänzung untersucht insbesondere die Geschwindigkeitsbegrenzung.
 
 ## Aufbau und Kennungen
 
-| Merkmal | US | DE |
-|---|---:|---:|
-| Gesamtgröße | 29.696 Byte | 29.696 Byte |
-| Kennungen nach Dekodierung | `KBE13D03` / `KBE13M02` | `KBE38D05` / `KBE38M02` |
-| Dateioffset der Kennungsfolge | `0x006DDE` | `0x006CCA` |
-| Vorspann | 1.024 Byte | 1.024 Byte |
-| Nutzdaten bis vor FF-Endauffüllung | 28.564 Byte | 28.292 Byte |
-| FF-Endauffüllung | 108 Byte | 380 Byte |
-| Kodierungskonstante | `0x000C2F3F` | `0x0002FC23` |
-| Stack-Anfangswert | `0x20001F78` | `0x20001F70` |
-| Reset-Handler | `0x01000149` | `0x01000149` |
+| Merkmal | DE | EU | US |
+|---|---:|---:|---:|
+| Gesamtgröße | 29.696 Byte | 29.696 Byte | 29.696 Byte |
+| Kennungen nach Dekodierung | `KBE38D05` / `KBE38M02` | `KBE01D03` / `KBE01M02` | `KBE13D03` / `KBE13M02` |
+| Dateioffset der Kennungsfolge | `0x006CCA` | `0x006DDA` | `0x006DDE` |
+| Vorspann | 1.024 Byte | 1.024 Byte | 1.024 Byte |
+| Nutzdaten bis vor FF-Endauffüllung | 28.292 Byte | 28.560 Byte | 28.564 Byte |
+| FF-Endauffüllung | 380 Byte | 112 Byte | 108 Byte |
+| Kodierungskonstante | `0x0002FC23` | `0x0007154A` | `0x000C2F3F` |
+| Stack-Anfangswert | `0x20001F70` | `0x20001F78` | `0x20001F78` |
+| Reset-Handler | `0x01000149` | `0x01000149` | `0x01000149` |
 
-Die US-Nutzdaten sind 272 Byte länger. Unterschiedliche Auffüllung sorgt für gleich große Dateien. Die Zahl `38` in der DE-Kennung ist kein Geschwindigkeitswert.
+Die US-Nutzdaten sind 272 Byte länger als DE und vier Byte länger als EU. Unterschiedliche Auffüllung sorgt für gleich große Dateien. Die Zahl `38` in der DE-Kennung ist kein Geschwindigkeitswert.
 
 ## Kodierung
 
@@ -26,13 +26,14 @@ Ab Dateioffset `0x400` lässt sich jedes ausgerichtete Little-Endian-32-Bit-Wort
 P = (C - K) modulo 2^32
 US: K = 0x000C2F3F
 DE: K = 0x0002FC23
+EU: K = 0x0007154A
 ```
 
 Die Konstanten wurden aus wiederholten Vektortabelleneinträgen abgeleitet. Plausibler ARM-Thumb-Startcode, eine konsistente Vektortabelle und die Versionskennungen stützen die Normalisierung. Erneutes Addieren stellt jedes analysierte Nutzdatenbyte exakt wieder her. Die genaue Funktion des Vorspanns und ein mögliches Signaturformat wurden damit nicht bestimmt.
 
 Beispiel: Das Wort bei Dateioffset `0x410` ist in US `0x000C2F3F`, in DE `0x0002FC23`. Nach der jeweiligen Subtraktion ergeben beide null.
 
-## Bytevergleich
+## Bytevergleich von US und DE
 
 | Vergleich | Ergebnis |
 |---|---:|
@@ -60,4 +61,5 @@ Belege: [US-Routine](../analysis/evidence/US/functions/01001388.c), [DE-Routine]
 - [Jede abweichende Byteposition als CSV](../analysis/results/byte-differences.csv)
 - [Normalisierung und ausgerichtete Unterschiede](../analysis/results/normalized-comparison.json)
 - [US-Codebelege](../analysis/evidence/US/) und [DE-Codebelege](../analysis/evidence/DE/)
+- [EU-Codebelege](../analysis/evidence/EU/) und [EU-Geschwindigkeitsanalyse](eu-speed-limits.md)
 - [Quellen und Prüfsummen](provenance.md)

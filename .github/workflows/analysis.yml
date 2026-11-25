@@ -31,4 +31,4 @@ jobs:
       - name: Reproduce disassembly
         run: python analysis/scripts/export_disassembly.py
       - name: Check generated results
-        run: git diff --exit-code -- analysis/results analysis/evidence/US/disassembly.txt analysis/evidence/DE/disassembly.txt
+        run: git diff --exit-code -- analysis/results analysis/evidence

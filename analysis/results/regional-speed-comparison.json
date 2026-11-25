@@ -1,0 +1,57 @@
+{
+  "method": "Original Thumb instructions executed in isolated Unicorn RAM; synthetic input, no hardware test.",
+  "units": "Nominal parameter and firmware telemetry in 0.1 km/h; no independent road or GPS measurement.",
+  "regions": {
+    "DE": {
+      "nominal_custom_max_deci_kmh": 200,
+      "normal_max_internal": 3560,
+      "normal_telemetry_deci_kmh": 217,
+      "custom_scaled_parameter": 218,
+      "custom_max_internal": 3497,
+      "custom_telemetry_deci_kmh": 213,
+      "throttle_routine": "0x0100283C",
+      "throttle_file_offset": "0x002C3C",
+      "parameter_routine": "0x010040C4",
+      "drive_routine": "0x01005444",
+      "regulator": {
+        "routine": "0x1005040",
+        "argument_r0": 3560,
+        "drive_command_internal": 3560
+      }
+    },
+    "EU": {
+      "nominal_custom_max_deci_kmh": 250,
+      "normal_max_internal": 4160,
+      "normal_telemetry_deci_kmh": 254,
+      "custom_scaled_parameter": 250,
+      "custom_max_internal": 4160,
+      "custom_telemetry_deci_kmh": 254,
+      "throttle_routine": "0x0100293C",
+      "throttle_file_offset": "0x002D3C",
+      "parameter_routine": "0x010041E8",
+      "drive_routine": "0x0100555C",
+      "regulator": {
+        "routine": "0x1005158",
+        "argument_r0": 4160,
+        "drive_command_internal": 4160
+      }
+    },
+    "US": {
+      "nominal_custom_max_deci_kmh": 380,
+      "normal_max_internal": 6288,
+      "normal_telemetry_deci_kmh": 384,
+      "custom_scaled_parameter": 380,
+      "custom_max_internal": 6288,
+      "custom_telemetry_deci_kmh": 384,
+      "throttle_routine": "0x01002940",
+      "throttle_file_offset": "0x002D40",
+      "parameter_routine": "0x010041E8",
+      "drive_routine": "0x01005560",
+      "regulator": {
+        "routine": "0x100515c",
+        "argument_r0": 6288,
+        "drive_command_internal": 6288
+      }
+    }
+  }
+}

@@ -42,6 +42,26 @@
         }
       ],
       "normalized_sha256": "b981f8eff55f024eeedae5bafc612a5379110414dae32de973f114e117abd7e3"
+    },
+    "EU": {
+      "source": "300X/EU/KBE01M02.bin",
+      "key": "0x0007154A",
+      "non_ff_end_exclusive": "0x7390",
+      "normalized_payload_size": 28560,
+      "ff_trailer_bytes": 112,
+      "md5_matches_update_json": true,
+      "roundtrip_verified": true,
+      "vector_table_consistent": true,
+      "stack_pointer": "0x20001f78",
+      "reset_handler": "0x1000149",
+      "version_strings": [
+        {
+          "file_offset": "0x6dda",
+          "payload_offset": "0x69da",
+          "value": "KBE01D03KBE01M02"
+        }
+      ],
+      "normalized_sha256": "6060413fccc29d8f655c340401bef002d8b3b3a516aa6a0d44f9c67e76601593"
     }
   },
   "aligned_comparison": {
