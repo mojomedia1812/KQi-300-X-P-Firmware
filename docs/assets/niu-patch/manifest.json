@@ -80,5 +80,71 @@
       "privacy_edit": "imagegen_redaction",
       "pixel_identical_to_device_capture": false
     }
+  },
+  "annotated_exports": {
+    "00-open.png": {
+      "sha256": "fc2c06f550bfeb8fd55738f439818ce6ef7ae2f57519fad42f1ce269e45b823a",
+      "dimensions": [
+        1080,
+        2400
+      ],
+      "rendered_from": "00-open.svg"
+    },
+    "01-home.png": {
+      "sha256": "2b26a2822f17a4f6048dee3ecc346c426f91af748183d1e295296bbfa746a762",
+      "dimensions": [
+        1080,
+        2400
+      ],
+      "rendered_from": "01-home.svg"
+    },
+    "02-profile.png": {
+      "sha256": "18df504ff8cf045fcdcba982dc98f3fab63f8ed55c15e81cd6f0d4d5437d5527",
+      "dimensions": [
+        1080,
+        2400
+      ],
+      "rendered_from": "02-profile.svg"
+    },
+    "03-settings.png": {
+      "sha256": "f8bb6fab0fe5cc10411dacf9cbe02e261b00cf68d8b18ecd2082969ea6845ea5",
+      "dimensions": [
+        1080,
+        2400
+      ],
+      "rendered_from": "03-settings.svg"
+    },
+    "04-keys.png": {
+      "sha256": "40ea31fb6f3c415ab080d1c56da8af8a6ee943b8118ccbbd3bd589d0c20ea598",
+      "dimensions": [
+        1080,
+        2400
+      ],
+      "rendered_from": "04-keys.svg"
+    },
+    "05-save-link.png": {
+      "sha256": "ef1bcfb64dd1e2b0bcc0188dde8fa704d805b65a5ad295dc7a795d9d6146ae5a",
+      "dimensions": [
+        1080,
+        2400
+      ],
+      "rendered_from": "05-save-link.svg"
+    },
+    "06-firmware-entry.png": {
+      "sha256": "53de4783fc78953ddb118a3ec4c86060dc39b59844f5c90db027bbd4018f4420",
+      "dimensions": [
+        1080,
+        2400
+      ],
+      "rendered_from": "06-firmware-entry.svg"
+    },
+    "07-clear-source.png": {
+      "sha256": "6ed3d3b29a957ed33436e7ca01f1dcda2486e5f21ca7178e1de92feb6a501b65",
+      "dimensions": [
+        1080,
+        2400
+      ],
+      "rendered_from": "07-clear-source.svg"
+    }
   }
 }

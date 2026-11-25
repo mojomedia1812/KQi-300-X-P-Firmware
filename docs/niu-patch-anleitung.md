@@ -10,7 +10,7 @@ Die Anleitung wurde mit öffentlich zugänglichen Anleitungen, den APK-Bedienele
 
 **Orange Rahmen markieren das Bedienelement. Die Pfeilspitze zeigt eine Stelle, auf die du tippen kannst. Die Zahl steht für die im Bildtext erklärte Aktion.** Die Zahlen 1 bis 13 begleiten den Ablauf. Auf dem Profilbild kommen zwei Aktionen vor: zuerst **3** für die Einstellungen, später **9** für den Fahrzeugeintrag.
 
-Die Aufnahmen zeigen Deutsch mit einigen englischen Beschriftungen und dunklem Design. Dein Handy kann anders aussehen. Die Android-App-Info ist zusätzlich als Installationskontrolle abgebildet. Profil und Fahrzeugverwaltung wurden zur Anonymisierung mit Bildbearbeitung verändert; diese zwei Bilder sind nicht pixelidentisch mit den Rohaufnahmen. Die markierten Bedienelemente wurden mit den echten Ansichten abgeglichen. Die übrigen PNG-Aufnahmen blieben unverändert; Rahmen, Pfeile und Zahlen liegen als separate SVG-Elemente darüber. [Bildherkunft und Bearbeitung](assets/niu-patch/README.md).
+Die Aufnahmen zeigen Deutsch mit einigen englischen Beschriftungen und dunklem Design. Dein Handy kann anders aussehen. Die Android-App-Info ist zusätzlich als Installationskontrolle abgebildet. Profil und Fahrzeugverwaltung wurden zur Anonymisierung mit Bildbearbeitung verändert; diese zwei Bilder sind nicht pixelidentisch mit den Rohaufnahmen. Die markierten Bedienelemente wurden mit den echten Ansichten abgeglichen. Die übrigen Quellaufnahmen blieben unverändert. Rahmen, Pfeile und Zahlen wurden als separate SVG-Elemente ergänzt; für die Anzeige hier wurden daraus PNG-Bilder gerendert. [Bildherkunft und Bearbeitung](assets/niu-patch/README.md).
 
 **Es gibt hier kein Bild eines angebotenen Updates, einer laufenden Übertragung oder einer Erfolgsmeldung:** Ohne Bluetooth-Verbindung lässt sich diese Ansicht auf dem vorhandenen Handy nicht erreichen. Die folgenden Bilder sind deshalb kein Beleg für einen erfolgreichen Flash.
 
@@ -61,7 +61,7 @@ c2fcef9bd1d2b23cf47e9213cefc907b760f94266b49c39d3a3b574aa32471b2
 
 **Kontrolle:** Auf dem Handy gibt es NIU und NIU Patch. Die Original-App wurde nicht deinstalliert.
 
-![Android-App-Info von NIU Patch: Markierung 1 zeigt auf Öffnen.](assets/niu-patch/00-open.svg)
+<img src="assets/niu-patch/00-open.png" width="432" alt="Android-App-Info von NIU Patch: Markierung 1 zeigt auf Öffnen.">
 
 **Bild 1 — Installierte App kontrollieren und öffnen.** Oben muss **NIU Patch** stehen. **1:** unten links **Öffnen** antippen. Die benachbarten Schaltflächen **Deinstallieren** und **Stopp erzwingen** gehören nicht zu diesem Schritt. Diese Samsung-Ansicht erreichst du über **App-Symbol lange drücken → App-Info**; auf anderen Android-Geräten sieht sie anders aus.
 
@@ -79,7 +79,7 @@ c2fcef9bd1d2b23cf47e9213cefc907b760f94266b49c39d3a3b574aa32471b2
 
 **Kontrolle:** NIU Patch ist angemeldet, der richtige Roller ist ausgewählt, Bluetooth ist verbunden. Bei einer Fehlermeldung hier anhalten und zuerst die Verbindung klären.
 
-![Fahrzeugansicht von NIU Patch: Markierung 2 zeigt auf den Profilbereich Ich.](assets/niu-patch/01-home.svg)
+<img src="assets/niu-patch/01-home.png" width="432" alt="Fahrzeugansicht von NIU Patch: Markierung 2 zeigt auf den Profilbereich Ich.">
 
 **Bild 2 — Zum Profil wechseln.** **2:** unten rechts auf **Ich** tippen. Die Aufnahme entstand ohne Bluetooth-Verbindung: das durchgestrichene Bluetooth-Symbol und die gespeicherten Akku-/Reichweitenwerte sind **keine** Bestätigung einer aktuellen Verbindung.
 
@@ -99,15 +99,15 @@ Diese Sicherung ist besonders vor einem späteren Löschen der Patch-App-Daten w
 
 **Kontrolle:** Die Schlüsseldaten sind außerhalb der Zwischenablage dauerhaft gespeichert. Wenn die Sicherung trotz funktionierender Verbindung nicht gelingt, ist die Ursache offen; insbesondere keine App-Daten löschen, solange du auf diese lokale Sicherung angewiesen bist.
 
-![Profil von NIU Patch: Markierung 3 zeigt auf Einstellungen, Markierung 9 auf den vorhandenen KQi 300X. Kontoname anonymisiert.](assets/niu-patch/02-profile.svg)
+<img src="assets/niu-patch/02-profile.png" width="432" alt="Profil von NIU Patch: Markierung 3 zeigt auf Einstellungen, Markierung 9 auf den vorhandenen KQi 300X. Kontoname anonymisiert.">
 
 **Bild 3 — Einstellungen finden.** **3:** oben links auf das sechseckige Einstellungssymbol tippen. **9** wird erst später in Abschnitt 7 verwendet: Der vorhandene Roller steht unter **Mein Gerät**. **+ Geräteanbindung** ist hier nicht der richtige Knopf. Der Kontoname wurde anonymisiert.
 
-![Einstellungen von NIU Patch: Markierung 4 zeigt auf Über in der Zeile mit Version 4.8.12.](assets/niu-patch/03-settings.svg)
+<img src="assets/niu-patch/03-settings.png" width="432" alt="Einstellungen von NIU Patch: Markierung 4 zeigt auf Über in der Zeile mit Version 4.8.12.">
 
 **Bild 4 — Zusatzmenü öffnen.** **4:** auf die gesamte Zeile **Über** neben **4.8.12** tippen. Die darüberliegende Zeile **Cache löschen** und **Abmelden** weiter unten nicht betätigen.
 
-![Manual-Update-Seite: Markierung 5 zeigt auf Copy to clipboard unter BT Secrets.](assets/niu-patch/04-keys.svg)
+<img src="assets/niu-patch/04-keys.png" width="432" alt="Manual-Update-Seite: Markierung 5 zeigt auf Copy to clipboard unter BT Secrets.">
 
 **Bild 5 — Schlüsselsicherung beginnen.** **5:** **Copy to clipboard** unter **BT Secrets!** antippen. Danach selbst in eine private, dauerhaft gespeicherte Notiz einfügen und den Inhalt prüfen. Das Foto zeigt nur den Knopf; es wurden für die Veröffentlichung keine Bluetooth-Schlüssel ausgelesen oder abgebildet. Der graue KQi3-Beispieltext im Eingabefeld ist ein Platzhalter und keine für den 300X ausgewählte Datei.
 
@@ -161,7 +161,7 @@ Die Zielversion enthält **D**, die BIN-Datei **M**. Diese unterschiedlichen Ken
 
 **Besonderheit:** Beim erneuten Öffnen dieser Seite wird der gespeicherte Link nicht automatisch in das Eingabefeld geladen. Ein leeres Feld bedeutet deshalb nicht, dass die Einstellung verloren ist. **Leeres Feld + Update** entfernt dagegen bewusst die manuelle Einstellung; das benötigst du erst nach Abschluss oder bei der Fehlerhilfe.
 
-![Manual-Update-Seite mit eingegebener US-Adresse: 6 markiert das Link-Feld, 7 Update und 8 Back to main app.](assets/niu-patch/05-save-link.svg)
+<img src="assets/niu-patch/05-save-link.png" width="432" alt="Manual-Update-Seite mit eingegebener US-Adresse: 6 markiert das Link-Feld, 7 Update und 8 Back to main app.">
 
 **Bild 6 — Link eintragen und speichern: 6 → 7 → 8.** **6:** die vollständige JSON-Adresse deiner gewählten Region ins Feld einfügen. **7:** auf **Update** tippen und die kurz eingeblendete Adresse prüfen. **8:** danach **Back to main app** antippen. Im Foto ist die US-Adresse nur als Eingabebeispiel eingetragen; sie wurde für diese Aufnahme **nicht gespeichert**. Das schmale Feld zeigt nur das Ende der langen Adresse. Du musst trotzdem den vollständigen Link kopieren, nicht nur den sichtbaren Ausschnitt. EU und DE verwenden dasselbe Eingabefeld.
 
@@ -178,7 +178,7 @@ Die Zielversion enthält **D**, die BIN-Datei **M**. Diese unterschiedlichen Ken
 
 **Kontrolle vor dem Start:** KQi 300X, gewünschte Region, richtige Zielversion und ausschließlich ein neues Motorcontroller-Update. Stimmen diese Angaben nicht überein oder sind sie nicht erkennbar, hier anhalten.
 
-![Fahrzeugverwaltung von NIU Patch: Markierung 10 zeigt auf Firmwareaktualisierung. Seriennummer, VIN und Akkunummer anonymisiert.](assets/niu-patch/06-firmware-entry.svg)
+<img src="assets/niu-patch/06-firmware-entry.png" width="432" alt="Fahrzeugverwaltung von NIU Patch: Markierung 10 zeigt auf Firmwareaktualisierung. Seriennummer, VIN und Akkunummer anonymisiert.">
 
 **Bild 7 — Firmwareprüfung öffnen.** **10:** die Zeile **Firmwareaktualisierung** antippen. Das ist der Einstieg zur Prüfung; es ist noch nicht der spätere Knopf **Jetzt aktualisieren**. Die Aufnahme zeigt ausdrücklich den Zustand **ohne Bluetooth-Verbindung**. In diesem Zustand erschien beim Antippen nur die Aufforderung, das Gerät mit Bluetooth zu verbinden und es erneut zu versuchen. Erst mit erreichbarem Roller weiterarbeiten. Seriennummer, VIN und Akkunummer wurden anonymisiert.
 
@@ -208,7 +208,7 @@ Eine feste Übertragungsdauer wurde für diese APK am KQi 300X hier nicht gemess
 
 **Abschlusskontrolle:** Erfolgsmeldung erhalten, Versionsanzeige dokumentiert, manuelle Quelle entfernt und normale Verbindung wiederhergestellt. Bei Warnungen oder Fehlverhalten keine Probefahrt durchführen.
 
-![Manual-Update-Seite zum Entfernen der manuellen Quelle: 11 markiert das zu leerende Eingabefeld, 12 Update und 13 Back to main app.](assets/niu-patch/07-clear-source.svg)
+<img src="assets/niu-patch/07-clear-source.png" width="432" alt="Manual-Update-Seite zum Entfernen der manuellen Quelle: 11 markiert das zu leerende Eingabefeld, 12 Update und 13 Back to main app.">
 
 **Bild 8 — Erst nach Abschluss die manuelle Quelle entfernen: 11 → 12 → 13.** **11:** ins Feld tippen, vorhandenen Text vollständig auswählen und löschen. Ein grauer Beispieltext wie `http://.../kqi3_pro_US.json` ist nur der Platzhalter eines leeren Felds. **12:** **Update** drücken. Die Meldung **You must provide a link to a json file** ist bei diesem bewussten Entfernen erwartet. **13:** **Back to main app** antippen. Diese Bildfolge beschreibt keine Rückkehr zur DE-Firmware.
 

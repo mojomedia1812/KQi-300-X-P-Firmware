@@ -3,6 +3,7 @@ import hashlib
 import json
 from pathlib import Path
 import re
+import struct
 from urllib.parse import unquote, urlsplit
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -35,12 +36,27 @@ def main():
         assert hashlib.sha256(data).hexdigest() == identity['sha256']
         assert hashlib.sha1(f'blob {len(data)}\0'.encode()+data).hexdigest() == identity['git_blob_sha1']
         print(f'{region}: original binary, descriptor size, hashes and canonical URL verified')
+    image_root = ROOT / 'docs/assets/niu-patch'
+    image_manifest = json.loads((image_root / 'manifest.json').read_text(encoding='utf-8'))
+    assert len(image_manifest['annotated_exports']) == 8
+    image_files = {
+        **{f'screens/{name}': entry for name, entry in image_manifest['screenshots'].items()},
+        **image_manifest['annotated_exports'],
+    }
+    for name, identity in image_files.items():
+        data = (image_root / name).read_bytes()
+        assert data.startswith(b'\x89PNG\r\n\x1a\n'), name
+        assert hashlib.sha256(data).hexdigest() == identity['sha256'], name
+        assert list(struct.unpack('>II', data[16:24])) == identity['dimensions'], name
+    print('Public screenshot sources and eight annotated PNG exports verified')
     for path in sorted(ROOT.rglob('*.md')):
         if any(part in ('.git', '.venv', 'generated') for part in path.relative_to(ROOT).parts):
             continue
         text = path.read_text(encoding='utf-8')
         assert not re.search(r'[A-Za-z]:[\\/](?:Users|_codex)[\\/]', text), path
-        for target in re.findall(r'\[[^\]]+\]\(([^\s)]+)\)', text):
+        targets = re.findall(r'\[[^\]]+\]\(([^\s)]+)\)', text)
+        targets += re.findall(r'\b(?:src|href)="([^"\s]+)"', text)
+        for target in targets:
             url = urlsplit(target)
             if url.netloc == 'github.com':
                 reviewed_source = (path == ROOT / 'docs/niu-patch-quellen.md'
