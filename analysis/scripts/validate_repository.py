@@ -7,6 +7,13 @@ from urllib.parse import unquote, urlsplit
 
 ROOT = Path(__file__).resolve().parents[2]
 CANONICAL = 'https://github.com/mojomedia1812/KQi-300-X-P-Firmware'
+# External repositories are cited only as reviewed sources on this evidence page.
+# Firmware descriptors and all operational download links remain self-hosted.
+REVIEWED_SOURCE_LINKS = {
+    'https://github.com/hjcday/KQi-300-X-P-Firmware',
+    'https://github.com/jerridev/300X-US',
+    'https://github.com/Laufbursche42/niu-update',
+}
 
 
 def main():
@@ -36,13 +43,16 @@ def main():
         for target in re.findall(r'(?<!!)\[[^\]]+\]\(([^\s)]+)\)', text):
             url = urlsplit(target)
             if url.netloc == 'github.com':
-                assert target.startswith(CANONICAL + '/') or target == CANONICAL, (path, target)
+                reviewed_source = (path == ROOT / 'docs/niu-patch-quellen.md'
+                                   and target in REVIEWED_SOURCE_LINKS)
+                assert (target.startswith(CANONICAL + '/') or target == CANONICAL
+                        or reviewed_source), (path, target)
             if url.scheme or target.startswith('#'):
                 continue
             resolved = (path.parent / unquote(url.path)).resolve()
             assert resolved.is_relative_to(ROOT.resolve()), (path, target)
             assert resolved.exists(), (path, target)
-    print('All local Markdown link targets exist; no obsolete repository or local host paths found')
+    print('Markdown links verified; external GitHub citations limited to reviewed-source page')
 
 
 if __name__ == '__main__':

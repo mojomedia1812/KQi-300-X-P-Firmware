@@ -7,6 +7,8 @@
 
 ## Download
 
+Für den vollständigen Ablauf am KQi 300X: **[Schritt-für-Schritt-Anleitung](niu-patch-anleitung.md)**. Der [Quellenabgleich](niu-patch-quellen.md) erklärt, was direkt an der APK geprüft und was nicht am Fahrzeug getestet wurde.
+
 **[NIU Patch APK herunterladen](https://github.com/mojomedia1812/KQi-300-X-P-Firmware/releases/download/niu-patch-v4.8.12-r1/NIU_Patch.apk)**
 
 - [Release niu-patch-v4.8.12-r1](https://github.com/mojomedia1812/KQi-300-X-P-Firmware/releases/tag/niu-patch-v4.8.12-r1)

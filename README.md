@@ -10,6 +10,8 @@ Regionale FOC-Firmwaredateien für den Motorcontroller des **NIU KQi 300X**, die
 
 **[NIU Patch APK herunterladen](https://github.com/mojomedia1812/KQi-300-X-P-Firmware/releases/download/niu-patch-v4.8.12-r1/NIU_Patch.apk)** · [Release und Prüfsummen](https://github.com/mojomedia1812/KQi-300-X-P-Firmware/releases/tag/niu-patch-v4.8.12-r1) · [Installation und Details](docs/niu-patch.md)
 
+**[Ausführliche Schritt-für-Schritt-Anleitung für den KQi 300X](docs/niu-patch-anleitung.md)** — mit Kontrollpunkten, DE-/EU-/US-Links, Schlüsselsicherung und Fehlerhilfe. Der [Quellenabgleich](docs/niu-patch-quellen.md) trennt am APK-Code geprüfte Abläufe, externe Berichte und ungetestete Fahrzeugfunktionen.
+
 Basis ist die angepasste NIU-Version **4.8.12**. Die App erscheint als **NIU Patch** und verwendet `com.niu.lxckb9p`; die offizielle App verwendet `com.niu.manager`. Wer bereits **NIU Parallel** aus diesem Projekt installiert hat, kann diese APK als Update darüber installieren. Paketkennung und Signaturschlüssel bleiben gleich, sodass die vorhandenen lokalen App-Daten erhalten bleiben.
 
 ## Firmware Analyse im Überblick
