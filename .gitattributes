@@ -1,0 +1,10 @@
+*.md text eol=lf
+*.py text eol=lf
+*.java text eol=lf
+*.json text eol=lf
+*.txt text eol=lf
+*.tsv text eol=lf
+*.csv text eol=lf
+*.yml text eol=lf
+*.c text eol=lf
+*.bin binary

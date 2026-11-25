@@ -1,0 +1,60 @@
+{
+  "repository": "https://github.com/mojomedia1812/KQi-300-X-P-Firmware",
+  "analysis_date": "2026-11-25",
+  "source_commit": "dbe234e74df30c9ce4bdb943d7380210917987f5",
+  "firmware_files": [
+    {
+      "region": "DE",
+      "path": "300X/DE/KBE38M02.bin",
+      "size": 29696,
+      "version": "KBE38D05",
+      "md5": "f356c2e4fb9a128c1ddf17f7166e57cb",
+      "sha256": "48533095b473f9ba6ce4e64d9be3ae994ec9f7bc2861b98427f272ade94a525c",
+      "git_blob_sha1": "888683d14b46b021acd088686879d3d542909693",
+      "url": "https://github.com/mojomedia1812/KQi-300-X-P-Firmware/raw/refs/heads/main/300X/DE/KBE38M02.bin"
+    },
+    {
+      "region": "EU",
+      "path": "300X/EU/KBE01M02.bin",
+      "size": 29696,
+      "version": "KBE01D03",
+      "md5": "86288174560d2190d75251707ee3996c",
+      "sha256": "9e91ea7dab2050556fcdb967e5573e8b932d9ef2be30d9b55b3aa9cb0de2ad1e",
+      "git_blob_sha1": "a254185da95a59247f20cb7d482ef92040cbf85f",
+      "url": "https://github.com/mojomedia1812/KQi-300-X-P-Firmware/raw/refs/heads/main/300X/EU/KBE01M02.bin"
+    },
+    {
+      "region": "US",
+      "path": "300X/US/KBE13M02.bin",
+      "size": 29696,
+      "version": "KBE13D03",
+      "md5": "125b01730f8b095d88adca2e800c1426",
+      "sha256": "fbc1390c7f0befbd4e66958a36454cec045d4a0e0517e8dca006b6cf9f169f3e",
+      "git_blob_sha1": "a35c2d5b48bcc79e19b56a7fdbcdc805d74a0446",
+      "url": "https://github.com/mojomedia1812/KQi-300-X-P-Firmware/raw/refs/heads/main/300X/US/KBE13M02.bin"
+    }
+  ],
+  "tool_versions": {
+    "ghidra": "12.1.4",
+    "capstone": "5.0.9",
+    "unicorn": "2.1.4"
+  },
+  "independent_road_or_gps_measurement": false,
+  "reported_speeds_kmh": {
+    "DE": 21,
+    "US": 38,
+    "evidence": "user report; no independent measurement log"
+  },
+  "analysis_scope": [
+    "US and DE binary comparison",
+    "US and DE speed-limit data flow",
+    "isolated original-instruction emulation",
+    "all three regional descriptor hashes and URLs"
+  ],
+  "not_verified": [
+    "EU executable speed limits",
+    "300P compatibility",
+    "complete cruise-control and lighting behavior",
+    "all current, braking, thermal and fault limits"
+  ]
+}
