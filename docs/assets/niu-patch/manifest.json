@@ -98,13 +98,13 @@
       ],
       "rendered_from": "01-home.svg"
     },
-    "02-profile.png": {
-      "sha256": "18df504ff8cf045fcdcba982dc98f3fab63f8ed55c15e81cd6f0d4d5437d5527",
+    "02-open-settings.png": {
+      "sha256": "a6bf67fb8d9b6f5541bac3f6bf0f9d40fa3cf5f249bc2a4ad32989130218e79b",
       "dimensions": [
         1080,
         2400
       ],
-      "rendered_from": "02-profile.svg"
+      "rendered_from": "02-open-settings.svg"
     },
     "03-settings.png": {
       "sha256": "f8bb6fab0fe5cc10411dacf9cbe02e261b00cf68d8b18ecd2082969ea6845ea5",
@@ -129,6 +129,14 @@
         2400
       ],
       "rendered_from": "05-save-link.svg"
+    },
+    "05-select-vehicle.png": {
+      "sha256": "298951ec6acbce2ded66ed8d2a9805e888cb375c8e18e2543e060eb89d44a584",
+      "dimensions": [
+        1080,
+        2400
+      ],
+      "rendered_from": "05-select-vehicle.svg"
     },
     "06-firmware-entry.png": {
       "sha256": "53de4783fc78953ddb118a3ec4c86060dc39b59844f5c90db027bbd4018f4420",

@@ -8,7 +8,7 @@ Die Anleitung wurde mit öffentlich zugänglichen Anleitungen, den APK-Bedienele
 
 ## So liest du die Bilder
 
-**Orange Rahmen markieren das Bedienelement. Die Pfeilspitze zeigt eine Stelle, auf die du tippen kannst. Die Zahl steht für die im Bildtext erklärte Aktion.** Die Zahlen 1 bis 13 begleiten den Ablauf. Auf dem Profilbild kommen zwei Aktionen vor: zuerst **3** für die Einstellungen, später **9** für den Fahrzeugeintrag.
+**Orange Rahmen markieren das Bedienelement. Die Pfeilspitze zeigt eine Stelle, auf die du tippen kannst. Die Zahl steht für die im Bildtext erklärte Aktion.** Die Zahlen 1 bis 13 begleiten den Ablauf. Einstellungen (**3**) und Fahrzeugauswahl (**9**) haben jeweils ein eigenes Bild an der passenden Stelle im Ablauf.
 
 Die Aufnahmen zeigen Deutsch mit einigen englischen Beschriftungen und dunklem Design. Dein Handy kann anders aussehen. Die Android-App-Info ist zusätzlich als Installationskontrolle abgebildet. Profil und Fahrzeugverwaltung wurden zur Anonymisierung mit Bildbearbeitung verändert; diese zwei Bilder sind nicht pixelidentisch mit den Rohaufnahmen. Die markierten Bedienelemente wurden mit den echten Ansichten abgeglichen. Die übrigen Quellaufnahmen blieben unverändert. Rahmen, Pfeile und Zahlen wurden als separate SVG-Elemente ergänzt; für die Anzeige hier wurden daraus PNG-Bilder gerendert. [Bildherkunft und Bearbeitung](assets/niu-patch/README.md).
 
@@ -99,9 +99,9 @@ Diese Sicherung ist besonders vor einem späteren Löschen der Patch-App-Daten w
 
 **Kontrolle:** Die Schlüsseldaten sind außerhalb der Zwischenablage dauerhaft gespeichert. Wenn die Sicherung trotz funktionierender Verbindung nicht gelingt, ist die Ursache offen; insbesondere keine App-Daten löschen, solange du auf diese lokale Sicherung angewiesen bist.
 
-<img src="assets/niu-patch/02-profile.png" width="432" alt="Profil von NIU Patch: Markierung 3 zeigt auf Einstellungen, Markierung 9 auf den vorhandenen KQi 300X. Kontoname anonymisiert.">
+<img src="assets/niu-patch/02-open-settings.png" width="432" alt="Profil von NIU Patch: ausschließlich Markierung 3 auf dem Einstellungssymbol. Kontoname anonymisiert.">
 
-**Bild 3 — Einstellungen finden.** **3:** oben links auf das sechseckige Einstellungssymbol tippen. **9** wird erst später in Abschnitt 7 verwendet: Der vorhandene Roller steht unter **Mein Gerät**. **+ Geräteanbindung** ist hier nicht der richtige Knopf. Der Kontoname wurde anonymisiert.
+**Bild 3 — Einstellungen finden.** **3:** oben links auf das sechseckige Einstellungssymbol tippen. Der Kontoname wurde anonymisiert.
 
 <img src="assets/niu-patch/03-settings.png" width="432" alt="Einstellungen von NIU Patch: Markierung 4 zeigt auf Über in der Zeile mit Version 4.8.12.">
 
@@ -168,7 +168,7 @@ Die Zielversion enthält **D**, die BIN-Datei **M**. Diese unterschiedlichen Ken
 ## 7. Das angebotene Firmwareupdate prüfen
 
 1. Kontrolliere erneut: Roller eingeschaltet, NIU Patch per Bluetooth verbunden, originale NIU-App geschlossen.
-2. Öffne **Ich → Mein Gerät** und tippe auf die Karte deines bereits gebundenen KQi 300X (**Markierung 9 in Bild 3**). Dieser Weg wurde am Handy geprüft und führt zur Seite **Verwalten**. Je Ansicht ist außerdem ein Einstieg über das Fahrzeugmenü, häufig die drei Punkte, möglich.
+2. Öffne **Ich → Mein Gerät** und tippe auf die Karte deines bereits gebundenen KQi 300X (**Markierung 9 in Bild 7 unten**). Dieser Weg wurde am Handy geprüft und führt zur Seite **Verwalten**. Je Ansicht ist außerdem ein Einstieg über das Fahrzeugmenü, häufig die drei Punkte, möglich.
 3. Auf **Verwalten** tippe auf **Firmwareaktualisierung**; bei Englisch **Firmware Upgrade**.
 4. Warte auf die Update-Prüfung. Falls du diese Seite schon vor dem Eintragen der JSON geöffnet hattest, verlasse sie und öffne sie erneut, damit eine neue Prüfung erfolgt.
 5. Kontrolliere das **neu angebotene Update**: Es soll nur den Motorcontroller betreffen. Die sichtbare Komponentenbezeichnung kann **Motor Controller** lauten; in den Update-Daten heißt er **FOC**. Verlange deshalb nicht zwingend den wörtlichen Text FOC auf dem Bildschirm.
@@ -178,9 +178,13 @@ Die Zielversion enthält **D**, die BIN-Datei **M**. Diese unterschiedlichen Ken
 
 **Kontrolle vor dem Start:** KQi 300X, gewünschte Region, richtige Zielversion und ausschließlich ein neues Motorcontroller-Update. Stimmen diese Angaben nicht überein oder sind sie nicht erkennbar, hier anhalten.
 
+<img src="assets/niu-patch/05-select-vehicle.png" width="432" alt="Profil von NIU Patch: ausschließlich Markierung 9 auf der Karte des bereits gebundenen KQi 300X. Kontoname anonymisiert.">
+
+**Bild 7 — Vorhandenen Roller auswählen.** **9:** unter **Mein Gerät** auf die Karte deines KQi 300X tippen. **+ Geräteanbindung** nicht antippen; der Roller ist bereits im Konto vorhanden. Der Kontoname wurde anonymisiert.
+
 <img src="assets/niu-patch/06-firmware-entry.png" width="432" alt="Fahrzeugverwaltung von NIU Patch: Markierung 10 zeigt auf Firmwareaktualisierung. Seriennummer, VIN und Akkunummer anonymisiert.">
 
-**Bild 7 — Firmwareprüfung öffnen.** **10:** die Zeile **Firmwareaktualisierung** antippen. Das ist der Einstieg zur Prüfung; es ist noch nicht der spätere Knopf **Jetzt aktualisieren**. Die Aufnahme zeigt ausdrücklich den Zustand **ohne Bluetooth-Verbindung**. In diesem Zustand erschien beim Antippen nur die Aufforderung, das Gerät mit Bluetooth zu verbinden und es erneut zu versuchen. Erst mit erreichbarem Roller weiterarbeiten. Seriennummer, VIN und Akkunummer wurden anonymisiert.
+**Bild 8 — Firmwareprüfung öffnen.** **10:** die Zeile **Firmwareaktualisierung** antippen. Das ist der Einstieg zur Prüfung; es ist noch nicht der spätere Knopf **Jetzt aktualisieren**. Die Aufnahme zeigt ausdrücklich den Zustand **ohne Bluetooth-Verbindung**. In diesem Zustand erschien beim Antippen nur die Aufforderung, das Gerät mit Bluetooth zu verbinden und es erneut zu versuchen. Erst mit erreichbarem Roller weiterarbeiten. Seriennummer, VIN und Akkunummer wurden anonymisiert.
 
 ## 8. Die Übertragung starten und abwarten
 
@@ -210,7 +214,7 @@ Eine feste Übertragungsdauer wurde für diese APK am KQi 300X hier nicht gemess
 
 <img src="assets/niu-patch/07-clear-source.png" width="432" alt="Manual-Update-Seite zum Entfernen der manuellen Quelle: 11 markiert das zu leerende Eingabefeld, 12 Update und 13 Back to main app.">
 
-**Bild 8 — Erst nach Abschluss die manuelle Quelle entfernen: 11 → 12 → 13.** **11:** ins Feld tippen, vorhandenen Text vollständig auswählen und löschen. Ein grauer Beispieltext wie `http://.../kqi3_pro_US.json` ist nur der Platzhalter eines leeren Felds. **12:** **Update** drücken. Die Meldung **You must provide a link to a json file** ist bei diesem bewussten Entfernen erwartet. **13:** **Back to main app** antippen. Diese Bildfolge beschreibt keine Rückkehr zur DE-Firmware.
+**Bild 9 — Erst nach Abschluss die manuelle Quelle entfernen: 11 → 12 → 13.** **11:** ins Feld tippen, vorhandenen Text vollständig auswählen und löschen. Ein grauer Beispieltext wie `http://.../kqi3_pro_US.json` ist nur der Platzhalter eines leeren Felds. **12:** **Update** drücken. Die Meldung **You must provide a link to a json file** ist bei diesem bewussten Entfernen erwartet. **13:** **Back to main app** antippen. Diese Bildfolge beschreibt keine Rückkehr zur DE-Firmware.
 
 ## 10. Fehlerhilfe: Erst lesen, dann handeln
 

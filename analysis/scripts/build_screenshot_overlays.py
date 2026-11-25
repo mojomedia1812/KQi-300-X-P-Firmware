@@ -22,9 +22,8 @@ FIGURES = [
     ('01-home', '01-home.png', 'Profilbereich Ich öffnen', [
         (2, [744, 2088, 310, 170], [900, 2130], [930, 2000]),
     ]),
-    ('02-profile', '02-profile-anonymized.png', 'Einstellungen oder Fahrzeugverwaltung öffnen', [
+    ('02-open-settings', '02-profile-anonymized.png', 'Einstellungen öffnen', [
         (3, [23, 92, 146, 124], [96, 154], [240, 154]),
-        (9, [51, 1152, 978, 281], [900, 1290], [965, 1520]),
     ]),
     ('03-settings', '03-settings.png', 'Über öffnen', [
         (4, [51, 1452, 978, 141], [540, 1520], [730, 1680]),
@@ -36,6 +35,9 @@ FIGURES = [
         (6, [162, 677, 757, 152], [890, 805], [995, 750]),
         (7, [416, 829, 248, 135], [640, 898], [825, 898]),
         (8, [20, 103, 369, 135], [370, 171], [520, 171]),
+    ]),
+    ('05-select-vehicle', '02-profile-anonymized.png', 'Vorhandenen KQi 300X auswählen', [
+        (9, [51, 1152, 978, 281], [900, 1290], [965, 1520]),
     ]),
     ('06-firmware-entry', '06-manage-anonymized.png', 'Firmwareaktualisierung öffnen', [
         (10, [51, 520, 978, 127], [980, 585], [865, 712]),

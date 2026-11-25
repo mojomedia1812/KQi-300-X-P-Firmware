@@ -38,7 +38,7 @@ def main():
         print(f'{region}: original binary, descriptor size, hashes and canonical URL verified')
     image_root = ROOT / 'docs/assets/niu-patch'
     image_manifest = json.loads((image_root / 'manifest.json').read_text(encoding='utf-8'))
-    assert len(image_manifest['annotated_exports']) == 8
+    assert len(image_manifest['annotated_exports']) == 9
     image_files = {
         **{f'screens/{name}': entry for name, entry in image_manifest['screenshots'].items()},
         **image_manifest['annotated_exports'],
@@ -48,7 +48,7 @@ def main():
         assert data.startswith(b'\x89PNG\r\n\x1a\n'), name
         assert hashlib.sha256(data).hexdigest() == identity['sha256'], name
         assert list(struct.unpack('>II', data[16:24])) == identity['dimensions'], name
-    print('Public screenshot sources and eight annotated PNG exports verified')
+    print('Public screenshot sources and nine annotated PNG exports verified')
     for path in sorted(ROOT.rglob('*.md')):
         if any(part in ('.git', '.venv', 'generated') for part in path.relative_to(ROOT).parts):
             continue
